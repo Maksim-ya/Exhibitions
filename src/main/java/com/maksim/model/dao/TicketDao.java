@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface TicketDao {
     List<Ticket> findTicketsByUser(int userId);
-    boolean addTicket(Ticket ticket, Connection connection);
+    boolean addTicket(Ticket ticket);
 }

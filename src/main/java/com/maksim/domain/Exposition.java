@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Created by Максим on 03/May/18.
  */
 public class Exposition {
-    private int id;
+    private int expositionId;
     private String title;
     private BigDecimal price;
     private String topic;
@@ -15,8 +15,8 @@ public class Exposition {
     private Timestamp startDate;
     private Timestamp finishDate;
 
-    public Exposition(int id, String title, BigDecimal price, String topic, Showroom showroom, Timestamp startDate, Timestamp finishDate) {
-        this.id = id;
+    public Exposition(int expositionId, String title, BigDecimal price, String topic, Showroom showroom, Timestamp startDate, Timestamp finishDate) {
+        this.expositionId = expositionId;
         this.title = title;
         this.price = price;
         this.topic = topic;
@@ -36,7 +36,7 @@ public class Exposition {
 
         Exposition that = (Exposition) o;
 
-        if (id != that.id) return false;
+        if (expositionId != that.expositionId) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (price != null ? !price.equals(that.price) : that.price != null) return false;
         if (topic != null ? !topic.equals(that.topic) : that.topic != null) return false;
@@ -48,7 +48,7 @@ public class Exposition {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = expositionId;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (topic != null ? topic.hashCode() : 0);
@@ -58,12 +58,12 @@ public class Exposition {
         return result;
     }
 
-    public int getId() {
-        return id;
+    public int getExpositionId() {
+        return expositionId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setExpositionId(int expositionId) {
+        this.expositionId = expositionId;
     }
 
     public String getTitle() {
@@ -117,7 +117,7 @@ public class Exposition {
     @Override
     public String toString() {
         return "Exposition{" +
-                "id=" + id +
+                "expositionId=" + expositionId +
                 ", title='" + title + '\'' +
                 ", price=" + price +
                 ", topic='" + topic + '\'' +

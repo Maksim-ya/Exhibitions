@@ -27,7 +27,7 @@
     <form action="application" method="get">
     <c:forEach items="${listOfPublications}" var="publication">
         <tr>
-                <%--<td><a href="/employeedata/${employee.id}" target="_blank">${employee.id}</a></td>--%>
+                <%--<td><a href="/employeedata/${employee.ticketId}" target="_blank">${employee.ticketId}</a></td>--%>
             <td><label><input type="checkbox" name="publication${publication.publicationId}" onclick="setButton"
                               value="${publication.publicationId}"></label></td>
                     <%--<form action="CheckBox" method="POST" target="_blank">--%>
@@ -38,7 +38,7 @@
             <td>${publication.price}</td>
             <td>${publication.type}</td>
             <td>${publication.edition}</td>
-                <%--<td><a href="<c:url value='/edit/${publication.id}'/>">Edit</a></td>--%>
+                <%--<td><a href="<c:url value='/edit/${publication.ticketId}'/>">Edit</a></td>--%>
             <td>
                     <%--<a href="<c:url value='/main'/>">Buy</a></td>--%>
                 <%--<form action="application" method="post">--%>
