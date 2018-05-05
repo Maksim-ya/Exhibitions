@@ -60,9 +60,9 @@ public class TicketDaoImpl implements TicketDao {
         int paymentId = resultSet.getInt(3);
         int expositionId = resultSet.getInt(4);
         Timestamp eventDate = resultSet.getTimestamp(5);
-        User user = new UserDaoImpl().findUserById(userId);
-        Payment payment = new PaymentDaoImpl().findPaymentById(paymentId);
-        Exposition exposition = new ExpositionDaoImpl().findById(expositionId);
+        User user = new UserDaoImpl().getInstance().findUserById(userId);
+        Payment payment = new PaymentDaoImpl().getInstance().findPaymentById(paymentId);
+        Exposition exposition = new ExpositionDaoImpl().getInstance().findById(expositionId);
         return new Ticket(ticketId, user, payment,exposition,eventDate );
     }
 

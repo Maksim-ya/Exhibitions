@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +57,7 @@ public class TicketPayCommand implements Command {
             }
 
             try {
-                paymentResult = paymentDao.addPayment(user , expositionList,totalPrice);
+                paymentResult = new PaymentDaoImpl().addPayment(user , expositionList,totalPrice);
             } catch (Exception e) {
                 e.printStackTrace();
             }

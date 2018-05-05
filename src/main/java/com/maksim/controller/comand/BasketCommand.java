@@ -25,9 +25,6 @@ public class BasketCommand implements Command {
         HttpSession se = request.getSession(true);
         User user = (User) se.getAttribute(PARAM_USER);
 
-
-
-
         ExpositionDao expositionDao = new ExpositionDaoImpl();
         int expositionAllId = expositionDao.findAllId().size();
         se.setAttribute(PARAM_EXPOSITION_ALL_ID, expositionAllId);

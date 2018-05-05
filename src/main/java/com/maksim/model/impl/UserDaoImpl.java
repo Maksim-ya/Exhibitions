@@ -15,6 +15,14 @@ import java.util.List;
  * Created by Максим on 03/May/18.
  */
 public class UserDaoImpl implements UserDao {
+    private final static UserDaoImpl userDaoImpl = new UserDaoImpl();
+
+    public UserDaoImpl() {
+    }
+
+    static UserDaoImpl getInstance() {
+        return userDaoImpl;
+    }
     @Override
     public boolean addUser(User user) {
         Connection connection = null;

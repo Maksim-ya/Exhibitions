@@ -11,12 +11,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
-import java.util.List;
 
 /**
  * Created by Максим on 03/May/18.
  */
 public class ShowroomDaoImpl implements ShowroomDao {
+    private final static ShowroomDaoImpl showroomDaoImpl = new ShowroomDaoImpl();
+
+    public ShowroomDaoImpl() {
+    }
+
+    static ShowroomDaoImpl getInstance() {
+        return showroomDaoImpl;
+    }
+
 
     @Override
     public Showroom findById(int showroomId) {

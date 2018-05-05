@@ -16,6 +16,14 @@ import java.util.List;
  * Created by Максим on 03/May/18.
  */
 public class PaymentDaoImpl implements PaymentDao {
+    private final static PaymentDaoImpl paymentDaoImpl= new PaymentDaoImpl();
+
+    public PaymentDaoImpl() {
+    }
+
+    static PaymentDaoImpl getInstance() {
+        return paymentDaoImpl;
+    }
     @Override
     public boolean addPayment(User user, List<Exposition> expositionList, BigDecimal totalPrice) {
         Connection connection = null;
@@ -153,7 +161,7 @@ public class PaymentDaoImpl implements PaymentDao {
 
         int paymentId = resultSet.getInt(1);
         int userId = resultSet.getInt(2);
-        User user = new UserDaoImpl().findUserById(userId);
+        User user = new UserDaoImpl().getInstance().findUserById(userId);
         BigDecimal totalPrice = resultSet.getBigDecimal(3);
         Timestamp dateTime = resultSet.getTimestamp(4);
         Payment payment = new Payment(paymentId, user, totalPrice, dateTime);

@@ -125,7 +125,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
         int showroomId = resultSet.getInt(5);
         LocalDate startDate = LocalDate.parse(resultSet.getString(6));
         LocalDate finishDate = LocalDate.parse(resultSet.getString(7));
-        Showroom showroom = new ShowroomDaoImpl().findById(showroomId);
+        Showroom showroom = new ShowroomDaoImpl().getInstance().findById(showroomId);
         return new Exposition (expositionId, expositionTitle, expositionPrice, topic, showroom, startDate,finishDate);
     }
 }
