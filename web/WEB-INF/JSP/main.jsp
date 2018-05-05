@@ -19,7 +19,7 @@
     <tr>
         <th width="120">Tickets</th>
     </tr>
-    <c:forEach items="${listOfTickets}" var="subscription">
+    <c:forEach items="${listOfTickets}" var="ticket">
         <tr>
             <td>${ticket.exposition.title}</td>
 

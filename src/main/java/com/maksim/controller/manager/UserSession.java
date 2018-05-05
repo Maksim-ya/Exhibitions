@@ -24,11 +24,11 @@ public class UserSession {
         se.setAttribute(PARAM_USERNAME, user.getFullName());
 
 
-        if (se.getAttribute("isPublication") != null) {
+        if (se.getAttribute("isExposition") != null) {
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);
         } else {
-            TicketDaoImpl subscriptionDao = new TicketDaoImpl();
-            List<Ticket> list = subscriptionDao.findTicketsByUser(user.getUserId());
+            TicketDaoImpl ticketDao= new TicketDaoImpl();
+            List<Ticket> list = ticketDao.findTicketsByUser(user.getUserId());
 //                for (int i = 0; i <list.size() ; i++) {
 //                    System.out.println(list.get(i));
 //                }

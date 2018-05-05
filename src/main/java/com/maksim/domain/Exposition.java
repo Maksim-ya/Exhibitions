@@ -1,7 +1,7 @@
 package com.maksim.domain;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 /**
  * Created by Максим on 03/May/18.
@@ -12,10 +12,10 @@ public class Exposition {
     private BigDecimal price;
     private String topic;
     private Showroom showroom;
-    private Timestamp startDate;
-    private Timestamp finishDate;
+    private LocalDate startDate;
+    private LocalDate finishDate;
 
-    public Exposition(int expositionId, String title, BigDecimal price, String topic, Showroom showroom, Timestamp startDate, Timestamp finishDate) {
+    public Exposition(int expositionId, String title, BigDecimal price, String topic, Showroom showroom, LocalDate startDate, LocalDate finishDate) {
         this.expositionId = expositionId;
         this.title = title;
         this.price = price;
@@ -98,19 +98,19 @@ public class Exposition {
         this.showroom = showroom;
     }
 
-    public Timestamp getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Timestamp getFinishDate() {
+    public LocalDate getFinishDate() {
         return finishDate;
     }
 
-    public void setFinishDate(Timestamp finishDate) {
+    public void setFinishDate(LocalDate finishDate) {
         this.finishDate = finishDate;
     }
 

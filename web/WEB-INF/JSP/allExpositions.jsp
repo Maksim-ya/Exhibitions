@@ -9,35 +9,36 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Publications Page</title>
+    <title>Expositions Page</title>
 </head>
 <body>
-<h1>List of Publications</h1>
+<h1>List of Expositions</h1>
 
 <table class="tg">
     <tr>
-        <th width="80">ID</th>
+        <%--<th width="80">ID</th>--%>
         <th width="120">Title</th>
         <th width="120">Price</th>
         <th width="120">Type</th>
-        <th width="120">Edition</th>
-        <th width="60">More</th>
-        <th width="60">Buy</th>
+        <th width="120">Showroom</th>
+        <th width="200">Start Date</th>
+        <th width="200">Finish Date</th>
     </tr>
     <form action="application" method="get">
-    <c:forEach items="${listOfPublications}" var="publication">
+    <c:forEach items="${listOfExpositions}" var="exposition">
         <tr>
                 <%--<td><a href="/employeedata/${employee.ticketId}" target="_blank">${employee.ticketId}</a></td>--%>
-            <td><label><input type="checkbox" name="publication${publication.publicationId}" onclick="setButton"
-                              value="${publication.publicationId}"></label></td>
+            <td><label><input type="checkbox" name="exposition${exposition.expositionId}" onclick="setButton"
+                              value="${exposition.expositionId}"></label></td>
                     <%--<form action="CheckBox" method="POST" target="_blank">--%>
                         <%--<input type="checkbox" name="publicationId" onclick="setButton"--%>
                                       <%--value="${publication.publicationId}"></label></td>--%>
             <%--<td> ${publication.publicationId}</td>--%>
-            <td>${publication.title}</td>
-            <td>${publication.price}</td>
-            <td>${publication.type}</td>
-            <td>${publication.edition}</td>
+            <td>${exposition.title}</td>
+            <td>${exposition.price}</td>
+            <td>${exposition.showroom.title}</td>
+            <td>${exposition.startDate}</td>
+            <td>${exposition.finishDate}</td>
                 <%--<td><a href="<c:url value='/edit/${publication.ticketId}'/>">Edit</a></td>--%>
             <td>
                     <%--<a href="<c:url value='/main'/>">Buy</a></td>--%>

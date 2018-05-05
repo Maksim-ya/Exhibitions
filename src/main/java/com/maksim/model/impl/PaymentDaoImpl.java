@@ -33,36 +33,34 @@ public class PaymentDaoImpl implements PaymentDao {
             preparedStatement.setBigDecimal(2, totalPrice);
             Date date = new Date();
             Timestamp dateTime = new Timestamp(date.getTime());
-            System.out.println(dateTime);
+//            System.out.println(dateTime);
             dateTime.setNanos(0);
-            System.out.println(dateTime);
+//            System.out.println(dateTime);
             preparedStatement.setTimestamp(3, dateTime);
             preparedStatement.executeUpdate();
-//            connection.commit();
-//            System.out.println(dateTime.getNanos());
-//            if (dateTime.getNanos()>499999999)
-//                dateTime.setNanos(0);
-//            else {dateTime.setSeconds(dateTime.getSeconds()+1);}
+
 
             payment = new PaymentDaoImpl().findPaymentByPaymentInfo(userId, totalPrice, dateTime);
 //             payment=new PaymentDaoImpl().exper(1);
 
-            System.out.println(payment);
+//            System.out.println(expositionList.size());
 
 //        try {
 //            connection =  DBConnection.getConnection();
-//            connection.setAutoCommit(false);
             connection.setAutoCommit(false);
             for (int i = 0; i < expositionList.size(); i++) {
                 Ticket ticket = new Ticket();
+                ticket.setUser(user);
                 ticket.setPayment(payment);
                 ticket.setExposition(expositionList.get(i));
+                ticket.setEventDate(null);
 //                new SubscriptionDaoImpl().addSubscription(ticket);
                 preparedStatement = connection.prepareStatement(
-                        "INSERT INTO tickets (paymentId,expositionId,eventDate) VALUES (?,?,?)");
-                preparedStatement.setInt(1, ticket.getPayment().getPaymentId());
-                preparedStatement.setInt(2, ticket.getExposition().getExpositionId());
-                preparedStatement.setTimestamp(3, ticket.getEventDate());
+                        "INSERT INTO tickets (userId,paymentId,expositionId,eventDate) VALUES (?,?,?,?)");
+                preparedStatement.setInt(1, ticket.getUser().getUserId());
+                preparedStatement.setInt(2, ticket.getPayment().getPaymentId());
+                preparedStatement.setInt(3, ticket.getExposition().getExpositionId());
+                preparedStatement.setTimestamp(4, ticket.getEventDate());
                 preparedStatement.executeUpdate();
             }
             BigDecimal priceUpdate = user.getAccount().subtract(totalPrice);
@@ -85,7 +83,6 @@ public class PaymentDaoImpl implements PaymentDao {
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-//            System.out.println("eeeeeeerrrr");
             new PaymentDaoImpl().deletePayment(payment);
             return false;
 

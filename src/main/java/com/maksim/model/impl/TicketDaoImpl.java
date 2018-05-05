@@ -31,7 +31,7 @@ public class TicketDaoImpl implements TicketDao {
         try {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(
-                    "SELECT * FROM subscriptions WHERE userId = ?");
+                    "SELECT * FROM tickets WHERE userId = ?");
             statement.setInt(1, userId);
             resultSet = statement.executeQuery();
             List<Ticket> list =  resultToList(resultSet);
@@ -56,12 +56,14 @@ public class TicketDaoImpl implements TicketDao {
         if (resultSet.isBeforeFirst()) resultSet.next();
 
         int ticketId = resultSet.getInt(1);
-        int paymentId = resultSet.getInt(2);
-        int expositionId = resultSet.getInt(3);
-        Timestamp eventDate = resultSet.getTimestamp(4);
+        int userId = resultSet.getInt(2);
+        int paymentId = resultSet.getInt(3);
+        int expositionId = resultSet.getInt(4);
+        Timestamp eventDate = resultSet.getTimestamp(5);
+        User user = new UserDaoImpl().findUserById(userId);
         Payment payment = new PaymentDaoImpl().findPaymentById(paymentId);
         Exposition exposition = new ExpositionDaoImpl().findById(expositionId);
-        return new Ticket(ticketId, payment,exposition,eventDate );
+        return new Ticket(ticketId, user, payment,exposition,eventDate );
     }
 
     @Override

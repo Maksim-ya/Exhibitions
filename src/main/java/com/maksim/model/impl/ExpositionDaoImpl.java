@@ -7,6 +7,7 @@ import com.maksim.model.dao.ExpositionDao;
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
         try {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(
-                    "SELECT publicationId FROM publications");
+                    "SELECT expositionId FROM expositions");
             resultSet = statement.executeQuery();
             return resultToListId(resultSet);
         } catch (SQLException e) {
@@ -51,7 +52,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
         try {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(
-                    "SELECT * FROM exposition");
+                    "SELECT * FROM expositions");
             resultSet = statement.executeQuery();
             return resultToList(resultSet);
         } catch (SQLException e) {
@@ -122,8 +123,8 @@ public class ExpositionDaoImpl implements ExpositionDao {
         BigDecimal expositionPrice = resultSet.getBigDecimal(3);
         String topic = resultSet.getString(4);
         int showroomId = resultSet.getInt(5);
-        Timestamp startDate = resultSet.getTimestamp(6);
-        Timestamp finishDate = resultSet.getTimestamp(7);
+        LocalDate startDate = LocalDate.parse(resultSet.getString(6));
+        LocalDate finishDate = LocalDate.parse(resultSet.getString(7));
         Showroom showroom = new ShowroomDaoImpl().findById(showroomId);
         return new Exposition (expositionId, expositionTitle, expositionPrice, topic, showroom, startDate,finishDate);
     }

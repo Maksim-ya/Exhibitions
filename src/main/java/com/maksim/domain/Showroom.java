@@ -1,22 +1,22 @@
 package com.maksim.domain;
 
-import java.sql.Timestamp;
+import java.time.LocalTime;
 
 /**
  * Created by Максим on 03/May/18.
  */
 public class Showroom {
-    private int id;
+    private int showroomId;
     private String title;
     private String address;
-    private Timestamp openingTime;
-    private Timestamp closingTime;
+    private LocalTime openingTime;
+    private LocalTime closingTime;
 
     public Showroom() {
     }
 
-    public Showroom(int id, String title, String address, Timestamp openingTime, Timestamp closingTime) {
-        this.id = id;
+    public Showroom(int showroomId, String title, String address, LocalTime openingTime, LocalTime closingTime) {
+        this.showroomId = showroomId;
         this.title = title;
         this.address = address;
         this.openingTime = openingTime;
@@ -30,7 +30,7 @@ public class Showroom {
 
         Showroom showroom = (Showroom) o;
 
-        if (id != showroom.id) return false;
+        if (showroomId != showroom.showroomId) return false;
         if (title != null ? !title.equals(showroom.title) : showroom.title != null) return false;
         if (address != null ? !address.equals(showroom.address) : showroom.address != null) return false;
         if (openingTime != null ? !openingTime.equals(showroom.openingTime) : showroom.openingTime != null)
@@ -41,7 +41,7 @@ public class Showroom {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = showroomId;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (openingTime != null ? openingTime.hashCode() : 0);
@@ -49,12 +49,12 @@ public class Showroom {
         return result;
     }
 
-    public int getId() {
-        return id;
+    public int getShowroomId() {
+        return showroomId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setShowroomId(int showroomId) {
+        this.showroomId = showroomId;
     }
 
     public String getTitle() {
@@ -73,26 +73,26 @@ public class Showroom {
         this.address = address;
     }
 
-    public Timestamp getOpeningTime() {
+    public LocalTime getOpeningTime() {
         return openingTime;
     }
 
-    public void setOpeningTime(Timestamp openingTime) {
+    public void setOpeningTime(LocalTime openingTime) {
         this.openingTime = openingTime;
     }
 
-    public Timestamp getClosingTime() {
+    public LocalTime getClosingTime() {
         return closingTime;
     }
 
-    public void setClosingTime(Timestamp closingTime) {
+    public void setClosingTime(LocalTime closingTime) {
         this.closingTime = closingTime;
     }
 
     @Override
     public String toString() {
         return "Showroom{" +
-                "id=" + id +
+                "showroomId=" + showroomId +
                 ", title='" + title + '\'' +
                 ", address='" + address + '\'' +
                 ", openingTime=" + openingTime +

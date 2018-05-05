@@ -7,6 +7,7 @@ import java.sql.Timestamp;
  */
 public class Ticket {
     private int ticketId;
+    private User user;
     private Payment payment;
     private Exposition exposition;
     private Timestamp eventDate;
@@ -14,8 +15,9 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(int ticketId, Payment payment, Exposition exposition, Timestamp eventDate) {
+    public Ticket(int ticketId,User user,Payment payment, Exposition exposition, Timestamp eventDate) {
         this.ticketId = ticketId;
+        this.user = user;
         this.payment = payment;
         this.exposition = exposition;
         this.eventDate = eventDate;
@@ -29,6 +31,7 @@ public class Ticket {
         Ticket ticket = (Ticket) o;
 
         if (ticketId != ticket.ticketId) return false;
+        if (user != null ? !user.equals(ticket.user) : ticket.user != null) return false;
         if (payment != null ? !payment.equals(ticket.payment) : ticket.payment != null) return false;
         if (exposition != null ? !exposition.equals(ticket.exposition) : ticket.exposition != null) return false;
         return eventDate != null ? eventDate.equals(ticket.eventDate) : ticket.eventDate == null;
@@ -38,6 +41,7 @@ public class Ticket {
     @Override
     public int hashCode() {
         int result = ticketId;
+        result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + (payment != null ? payment.hashCode() : 0);
         result = 31 * result + (exposition != null ? exposition.hashCode() : 0);
         result = 31 * result + (eventDate != null ? eventDate.hashCode() : 0);
@@ -50,6 +54,14 @@ public class Ticket {
 
     public void setTicketId(int ticketId) {
         this.ticketId = ticketId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Payment getPayment() {
@@ -80,6 +92,7 @@ public class Ticket {
     public String toString() {
         return "Ticket{" +
                 "ticketId=" + ticketId +
+                ", user=" + user +
                 ", payment=" + payment +
                 ", exposition=" + exposition +
                 ", eventDate=" + eventDate +

@@ -40,7 +40,7 @@ public class RequestHelper {
         commands.put("redirect", new RedirectRegistration());
 
 
-        commands.put("allPublications", new ExpositionListCommand());
+        commands.put("allExpositions", new ExpositionListCommand());
 
         commands.put("basket", new BasketCommand());
 
