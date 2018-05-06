@@ -50,9 +50,9 @@ public class BasketCommand implements Command {
 //                max = LocalDate.of(finishDate.getYear(),finishDate.getMonth(),finishDate.getDayOfMonth());
 
                 se.setAttribute(PARAM_IS_EXPOSITION, "?//D");
-//                se.setAttribute(PARAM_EXPOSITION+ i, exposition);
+                se.setAttribute(PARAM_EXPOSITION+ i, exposition);
 
-//                totalPrice=totalPrice.add(exposition.getPrice());
+                totalPrice=totalPrice.add(exposition.getPrice());
 
             }
         }
@@ -62,7 +62,7 @@ public class BasketCommand implements Command {
 
         se.setAttribute("listOfUserExpositions", list);
 
-//        se.setAttribute(PARAM_TOTAL_PRICE, totalPrice);
+        se.setAttribute(PARAM_TOTAL_PRICE, totalPrice);
 
 
 //        String publicationId = request.getParameter("publicationId");

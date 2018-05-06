@@ -30,6 +30,12 @@ public class TicketPayCommand implements Command {
         int expositionAllId = (Integer) se.getAttribute(PARAM_EXPOSITION_ALL_ID);
         BigDecimal totalPrice = new BigDecimal(String.valueOf(se.getAttribute(PARAM_TOTAL_PRICE)));
 
+        System.out.println(user);
+        System.out.println(expositionAllId);
+        System.out.println(totalPrice);
+
+        System.out.println(se.getAttribute(PARAM_EXPOSITION+1));
+
         if (user.getAccount().compareTo(totalPrice) >= 0) {
 
 //            BigDecimal priceUpdate = user.getAccount().subtract(totalPrice);

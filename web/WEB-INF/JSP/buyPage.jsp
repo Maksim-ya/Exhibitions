@@ -7,16 +7,16 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:directive.page contentType="text/html;
-charset=Utf-8"/>
+charset=Utf-8" />
 <html>
 <head>
     <title>BuyPage</title>
 </head>
 <body>
 <h3>Buy now</h3>
-<hr/>
+<hr />
 <c:out value="${name}, buy!"/>
-<hr/>
+<hr />
 <table class="tg">
     <tr>
         <%--<th width="80">ID</th>--%>
@@ -27,40 +27,41 @@ charset=Utf-8"/>
         <th width="200">Event Date</th>
         <%--<th width="200">Finish Date</th>--%>
     </tr>
-    <form action="application" method="post">
         <%--<form action="application" method="get">--%>
-            <c:forEach items="${listOfUserExpositions}" var="exposition">
-            <tr>
-                    <%--<td><a href="/employeedata/${employee.ticketId}" target="_blank">${employee.ticketId}</a></td>--%>
-                    <%--<td><label><input type="checkbox" name="exposition${exposition.expositionId}" onclick="setButton"--%>
-                    <%--value="${exposition.expositionId}"></label></td>--%>
-                    <%--<form action="CheckBox" method="POST" target="_blank">--%>
-                    <%--<input type="checkbox" name="publicationId" onclick="setButton"--%>
-                    <%--value="${publication.publicationId}"></label></td>--%>
-                    <%--<td> ${publication.publicationId}</td>--%>
-                <td>${exposition.title}</td>
-                <td>${exposition.price}</td>
-                <td>${exposition.showroom.title}</td>
-                <td>
-                    <form>
-                        <p><input type="date" name="calendar" value="${today}" max="${exposition.finishDate}"
-                                  min="${today}"></p>
-                                <%--<input type="submit"></p>--%>
-                    </form>
-                </td>
-                    <%--<td><a href="<c:url value='/edit/${publication.ticketId}'/>">Edit</a></td>--%>
-                <td>
-                        <%--<a href="<c:url value='/main'/>">Buy</a></td>--%>
-                        <%--<form action="application" method="post">--%>
-                        <%--<input type="hidden" name="publicationId" value="${publication.publicationId}"/>--%>
-                        <%--<button type="Submit" name="command" value="basket"> Buy</button>--%>
-                        <%--</form>--%>
-                </td>
-            </tr>
-            </c:forEach>
+
+        <c:forEach items="${listOfUserExpositions}" var="exposition">
+        <tr>
+                <%--<td><a href="/employeedata/${employee.ticketId}" target="_blank">${employee.ticketId}</a></td>--%>
+                <td><input name="exposition${exposition.expositionId}"
+                value="${exposition.expositionId}" hidden="true"  ></td>
+                <%--<form action="CheckBox" method="POST" target="_blank">--%>
+                <%--<input type="checkbox" name="publicationId" onclick="setButton"--%>
+                <%--value="${publication.publicationId}"></label></td>--%>
+                <%--<td> ${publication.publicationId}</td>--%>
+            <td>${exposition.title}</td>
+            <td>${exposition.price}</td>
+            <td>${exposition.showroom.title}</td>
+            <td>
+                <form>
+                    <p><input type="date" name="calendar" value="${today}" max="${exposition.finishDate}"
+                              min="${today}"></p>
+                        <%--<input type="submit"></p>--%>
+                </form>
+            </td>
+                <%--<td><a href="<c:url value='/edit/${publication.ticketId}'/>">Edit</a></td>--%>
+            <td>
+                    <%--<a href="<c:url value='/main'/>">Buy</a></td>--%>
+                    <%--<form action="application" method="post">--%>
+                    <%--<input type="hidden" name="publicationId" value="${publication.publicationId}"/>--%>
+                    <%--<button type="Submit" name="command" value="basket"> Buy</button>--%>
+                    <%--</form>--%>
+            </td>
+        </tr>
+        </c:forEach>
+
 </table>
-<%--<form action="application" method="get" >--%>
-<button type="Submit" name="command" value="payment">Buy now</button>
+<form action="application" method="get" >
+    <button  type="Submit" name="command" value="payment" >Buy now</button>
 </form>
 </body>
 </html>
