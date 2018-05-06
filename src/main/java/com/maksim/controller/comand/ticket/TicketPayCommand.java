@@ -38,7 +38,7 @@ public class TicketPayCommand implements Command {
 //            Subscription subscription = new Subscription();
 //            SubscriptionDaoImpl subscriptionDao = new SubscriptionDaoImpl();
 //            Payment payment= new Payment();
-            PaymentDaoImpl paymentDao = new PaymentDaoImpl();
+//            PaymentDaoImpl paymentDao = new PaymentDaoImpl();
             List<Exposition> expositionList =new ArrayList<Exposition>();
             for (int i = 1; i <= expositionAllId; i++) {
                 Exposition exposition = (Exposition) se.getAttribute(PARAM_EXPOSITION + i);

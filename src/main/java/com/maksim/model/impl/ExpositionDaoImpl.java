@@ -26,7 +26,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
     }
 
     @Override
-    public List<Integer> findAllId() {
+    public int findAllId() {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -35,13 +35,13 @@ public class ExpositionDaoImpl implements ExpositionDao {
             statement = connection.prepareStatement(
                     "SELECT expositionId FROM expositions");
             resultSet = statement.executeQuery();
-            return resultToListId(resultSet);
+            return createIdFromResult(resultSet);
         } catch (SQLException e) {
 //            LOGGER.error(e.getMessage());
         } finally {
             DBConnection.close(connection, statement, resultSet);
         }
-        return null;
+        return 0;
     }
 
     @Override
@@ -93,16 +93,16 @@ public class ExpositionDaoImpl implements ExpositionDao {
         return false;
     }
 
-    private List<Integer> resultToListId(ResultSet resultSet) throws SQLException {
-        List<Integer> list = new ArrayList<Integer>();
-        while (resultSet.next()) {
-            int publicationId = createIdFromResult(resultSet);
-            list.add(publicationId);
-        }
-        return list;
-    }
+//    private List<Integer> resultToListId(ResultSet resultSet) throws SQLException {
+//        List<Integer> list = new ArrayList<Integer>();
+//        while (resultSet.next()) {
+//            int publicationId = createIdFromResult(resultSet);
+//            list.add(publicationId);
+//        }
+//        return list;
+//    }
     private Integer createIdFromResult(ResultSet resultSet) throws SQLException {
-        if (resultSet.isBeforeFirst()) resultSet.next();
+        if (resultSet.isBeforeFirst()) resultSet.last();
 
         int publicationId = resultSet.getInt(1);
         return publicationId;

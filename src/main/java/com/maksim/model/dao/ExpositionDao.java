@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Максим on 03/May/18.
  */
 public interface ExpositionDao {
-    List<Integer> findAllId();
+    int findAllId();
     List<Exposition> findAll();
     Exposition findById(int id);
     Exposition findByTitle(String title);

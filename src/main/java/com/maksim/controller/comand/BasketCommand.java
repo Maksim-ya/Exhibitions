@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Максим on 03/May/18.
@@ -21,12 +25,14 @@ public class BasketCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
-        BigDecimal totalPrice = new BigDecimal("0.0");;
+        BigDecimal totalPrice = new BigDecimal("0.0");
+        LocalDate max=null;
         HttpSession se = request.getSession(true);
         User user = (User) se.getAttribute(PARAM_USER);
+        List<Exposition> list = new ArrayList<>();
 
         ExpositionDao expositionDao = new ExpositionDaoImpl();
-        int expositionAllId = expositionDao.findAllId().size();
+        int expositionAllId = expositionDao.findAllId();
         se.setAttribute(PARAM_EXPOSITION_ALL_ID, expositionAllId);
 //        System.out.println(expositionAllId);
 
@@ -39,25 +45,31 @@ public class BasketCommand implements Command {
             String expositionId = request.getParameter(PARAM_EXPOSITION + i);
             if (expositionId != null) {
                 Exposition exposition = expositionDao.findById(Integer.parseInt(expositionId));
+                list.add(exposition);
+//                LocalDate finishDate = exposition.getFinishDate();
+//                max = LocalDate.of(finishDate.getYear(),finishDate.getMonth(),finishDate.getDayOfMonth());
 
                 se.setAttribute(PARAM_IS_EXPOSITION, "?//D");
-                se.setAttribute(PARAM_EXPOSITION+ i, exposition);
+//                se.setAttribute(PARAM_EXPOSITION+ i, exposition);
 
-                totalPrice=totalPrice.add(exposition.getPrice());
+//                totalPrice=totalPrice.add(exposition.getPrice());
 
             }
         }
-        se.setAttribute(PARAM_TOTAL_PRICE, totalPrice);
+        LocalDate today = LocalDate.now();
+        se.setAttribute("today", today);
+//        se.setAttribute("max", max);
+
+        se.setAttribute("listOfUserExpositions", list);
+
+//        se.setAttribute(PARAM_TOTAL_PRICE, totalPrice);
+
 
 //        String publicationId = request.getParameter("publicationId");
 //
 //        PublicationDAO publicationDAO = new PublicationDaoImpl();
 //        Publication publication = publicationDAO.findById(Integer.parseInt(publicationId));
 //        se.setAttribute("publication", publication);
-
-//            System.out.println("______________________");
-//            System.out.println(publication);
-//            System.out.println("______________________");
 
 
 //       Integer publicationId = (Integer) se.getAttribute("publication.publicationId");

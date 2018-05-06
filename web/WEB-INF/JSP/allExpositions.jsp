@@ -19,7 +19,7 @@
         <%--<th width="80">ID</th>--%>
         <th width="120">Title</th>
         <th width="120">Price</th>
-        <th width="120">Type</th>
+        <%--<th width="120">Type</th>--%>
         <th width="120">Showroom</th>
         <th width="200">Start Date</th>
         <th width="200">Finish Date</th>
