@@ -26,7 +26,7 @@ public class BasketCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
         BigDecimal totalPrice = new BigDecimal("0.0");
-        LocalDate max=null;
+//        LocalDate max=null;
         HttpSession se = request.getSession(true);
         User user = (User) se.getAttribute(PARAM_USER);
         List<Exposition> list = new ArrayList<>();

@@ -27,13 +27,13 @@ charset=Utf-8" />
         <th width="200">Event Date</th>
         <%--<th width="200">Finish Date</th>--%>
     </tr>
-        <%--<form action="application" method="get">--%>
+        <form action="application" method="post">
 
         <c:forEach items="${listOfUserExpositions}" var="exposition">
         <tr>
                 <%--<td><a href="/employeedata/${employee.ticketId}" target="_blank">${employee.ticketId}</a></td>--%>
-                <td><input name="exposition${exposition.expositionId}"
-                value="${exposition.expositionId}" hidden="true"  ></td>
+                <%--<td><input name="exposition${exposition.expositionId}"--%>
+                <%--value="${exposition.expositionId}" hidden="true"  ></td>--%>
                 <%--<form action="CheckBox" method="POST" target="_blank">--%>
                 <%--<input type="checkbox" name="publicationId" onclick="setButton"--%>
                 <%--value="${publication.publicationId}"></label></td>--%>
@@ -42,11 +42,11 @@ charset=Utf-8" />
             <td>${exposition.price}</td>
             <td>${exposition.showroom.title}</td>
             <td>
-                <form>
-                    <p><input type="date" name="calendar" value="${today}" max="${exposition.finishDate}"
-                              min="${today}"></p>
-                        <%--<input type="submit"></p>--%>
-                </form>
+                <%--<form>--%>
+                    <input type="date" name="eventDate${exposition.expositionId}"  value="${today}" max="${exposition.finishDate}"
+                              min="${today}" >
+                        <%--<input type="submit">--%>
+                <%--</form>--%>
             </td>
                 <%--<td><a href="<c:url value='/edit/${publication.ticketId}'/>">Edit</a></td>--%>
             <td>
@@ -60,7 +60,7 @@ charset=Utf-8" />
         </c:forEach>
 
 </table>
-<form action="application" method="get" >
+<%--<form action="application" method="get" >--%>
     <button  type="Submit" name="command" value="payment" >Buy now</button>
 </form>
 </body>
