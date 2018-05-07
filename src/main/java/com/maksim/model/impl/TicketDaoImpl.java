@@ -60,11 +60,12 @@ public class TicketDaoImpl implements TicketDao {
         int userId = resultSet.getInt(2);
         int paymentId = resultSet.getInt(3);
         int expositionId = resultSet.getInt(4);
-        LocalDate eventDate = LocalDate.parse(resultSet.getString(5));
+        int numberOfPersons = resultSet.getInt(5);
+        LocalDate eventDate = LocalDate.parse(resultSet.getString(6));
         User user = new UserDaoImpl().getInstance().findUserById(userId);
         Payment payment = new PaymentDaoImpl().getInstance().findPaymentById(paymentId);
         Exposition exposition = new ExpositionDaoImpl().getInstance().findById(expositionId);
-        return new Ticket(ticketId, user, payment,exposition,eventDate );
+        return new Ticket(ticketId, user, payment,exposition,numberOfPersons,eventDate );
     }
 
     @Override
@@ -74,10 +75,11 @@ public class TicketDaoImpl implements TicketDao {
         try {
             connection =  DBConnection.getConnection();
             preparedStatement = connection.prepareStatement(
-                    "INSERT INTO tickets (paymentId, expositionId,eventDate) VALUES (?,?,?)");
+                    "INSERT INTO tickets (paymentId, expositionId,numberOfPersons, eventDate) VALUES (?,?,?,?)");
             preparedStatement.setInt(1, ticket.getPayment().getPaymentId());
             preparedStatement.setInt(2, ticket.getExposition().getExpositionId());
-            preparedStatement.setTimestamp(3, null);
+            preparedStatement.setInt(3, ticket.getNumberOfPersons());
+            preparedStatement.setString(4, ticket.getEventDate().toString());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {

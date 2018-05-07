@@ -52,6 +52,7 @@ public class TicketPayCommand implements Command {
 //                    expositionList.add(exposition);
                     ticket.setUser(user);
                     ticket.setExposition(exposition);
+                    ticket.setNumberOfPersons(Integer.parseInt(request.getParameter("numberTickets"+i)));
                     ticket.setEventDate(LocalDate.parse(request.getParameter("eventDate"+i)));
                     ticketList.add(ticket);
                     se.setAttribute(PARAM_EXPOSITION + i, null);

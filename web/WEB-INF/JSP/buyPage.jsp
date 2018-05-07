@@ -7,16 +7,16 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:directive.page contentType="text/html;
-charset=Utf-8" />
+charset=Utf-8"/>
 <html>
 <head>
     <title>BuyPage</title>
 </head>
 <body>
 <h3>Buy now</h3>
-<hr />
+<hr/>
 <c:out value="${name}, buy!"/>
-<hr />
+<hr/>
 <table class="tg">
     <tr>
         <%--<th width="80">ID</th>--%>
@@ -25,9 +25,10 @@ charset=Utf-8" />
         <%--<th width="120">Type</th>--%>
         <th width="120">Showroom</th>
         <th width="200">Event Date</th>
+        <th width="200">Number of Tickets</th>
         <%--<th width="200">Finish Date</th>--%>
     </tr>
-        <form action="application" method="get">
+    <form action="application" method="get">
 
         <c:forEach items="${listOfUserExpositions}" var="exposition">
         <tr>
@@ -42,14 +43,13 @@ charset=Utf-8" />
             <td>${exposition.price}</td>
             <td>${exposition.showroom.title}</td>
             <td>
-                <%--<form>--%>
-                    <input type="date" name="eventDate${exposition.expositionId}"  value="${today}" max="${exposition.finishDate}"
-                              min="${today}" >
-                        <%--<input type="submit">--%>
-                <%--</form>--%>
+                <input type="date" name="eventDate${exposition.expositionId}" value="${today}"
+                       max="${exposition.finishDate}"
+                       min="${today}">
             </td>
                 <%--<td><a href="<c:url value='/edit/${publication.ticketId}'/>">Edit</a></td>--%>
             <td>
+                <input type="text" name="numberTickets${exposition.expositionId}" size = 3 value="1" ><br/>
                     <%--<a href="<c:url value='/main'/>">Buy</a></td>--%>
                     <%--<form action="application" method="post">--%>
                     <%--<input type="hidden" name="publicationId" value="${publication.publicationId}"/>--%>
@@ -61,7 +61,7 @@ charset=Utf-8" />
 
 </table>
 <%--<form action="application" method="get" >--%>
-    <button  type="Submit" name="command" value="payment" >Buy now</button>
+<button type="Submit" name="command" value="payment">Buy now</button>
 </form>
 </body>
 </html>

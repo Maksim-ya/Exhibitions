@@ -68,12 +68,12 @@ public class PaymentDaoImpl implements PaymentDao {
 
 //                new SubscriptionDaoImpl().addSubscription(ticket);
                 preparedStatement = connection.prepareStatement(
-                        "INSERT INTO tickets (userId,paymentId,expositionId,eventDate) VALUES (?,?,?,?)");
+                        "INSERT INTO tickets (userId,paymentId,expositionId,numberOfPersons,eventDate) VALUES (?,?,?,?,?)");
                 preparedStatement.setInt(1, ticket.getUser().getUserId());
                 preparedStatement.setInt(2, ticket.getPayment().getPaymentId());
                 preparedStatement.setInt(3, ticket.getExposition().getExpositionId());
-                preparedStatement.setString(4, ticket.getEventDate().toString());
-//                LocalDate startDate = LocalDate.parse(resultSet.getString(6));
+                preparedStatement.setInt(4, ticket.getNumberOfPersons());
+                preparedStatement.setString(5, ticket.getEventDate().toString());
                 preparedStatement.executeUpdate();
             }
             BigDecimal priceUpdate = user.getAccount().subtract(totalPrice);

@@ -10,16 +10,18 @@ public class Ticket {
     private User user;
     private Payment payment;
     private Exposition exposition;
+    private int numberOfPersons;
     private LocalDate eventDate;
 
     public Ticket() {
     }
 
-    public Ticket(int ticketId,User user,Payment payment, Exposition exposition, LocalDate eventDate) {
+    public Ticket(int ticketId,User user,Payment payment, Exposition exposition,int numberOfPersons, LocalDate eventDate) {
         this.ticketId = ticketId;
         this.user = user;
         this.payment = payment;
         this.exposition = exposition;
+        this.numberOfPersons=numberOfPersons;
         this.eventDate = eventDate;
     }
 
@@ -31,11 +33,11 @@ public class Ticket {
         Ticket ticket = (Ticket) o;
 
         if (ticketId != ticket.ticketId) return false;
+        if (numberOfPersons != ticket.numberOfPersons) return false;
         if (user != null ? !user.equals(ticket.user) : ticket.user != null) return false;
         if (payment != null ? !payment.equals(ticket.payment) : ticket.payment != null) return false;
         if (exposition != null ? !exposition.equals(ticket.exposition) : ticket.exposition != null) return false;
         return eventDate != null ? eventDate.equals(ticket.eventDate) : ticket.eventDate == null;
-
     }
 
     @Override
@@ -44,6 +46,7 @@ public class Ticket {
         result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + (payment != null ? payment.hashCode() : 0);
         result = 31 * result + (exposition != null ? exposition.hashCode() : 0);
+        result = 31 * result + numberOfPersons;
         result = 31 * result + (eventDate != null ? eventDate.hashCode() : 0);
         return result;
     }
@@ -80,6 +83,14 @@ public class Ticket {
         this.exposition = exposition;
     }
 
+    public int getNumberOfPersons() {
+        return numberOfPersons;
+    }
+
+    public void setNumberOfPersons(int numberOfPersons) {
+        this.numberOfPersons = numberOfPersons;
+    }
+
     public LocalDate getEventDate() {
         return eventDate;
     }
@@ -95,6 +106,7 @@ public class Ticket {
                 ", user=" + user +
                 ", payment=" + payment +
                 ", exposition=" + exposition +
+                ", numberOfPersons=" + numberOfPersons +
                 ", eventDate=" + eventDate +
                 '}';
     }
