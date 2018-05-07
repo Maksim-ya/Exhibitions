@@ -28,18 +28,18 @@ public class ExpositionDaoImpl implements ExpositionDao {
     @Override
     public int findAllId() {
         Connection connection = null;
-        PreparedStatement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             connection = DBConnection.getConnection();
-            statement = connection.prepareStatement(
+            preparedStatement = connection.prepareStatement(
                     "SELECT expositionId FROM expositions");
-            resultSet = statement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             return createIdFromResult(resultSet);
         } catch (SQLException e) {
 //            LOGGER.error(e.getMessage());
         } finally {
-            DBConnection.close(connection, statement, resultSet);
+            DBConnection.close(connection, preparedStatement, resultSet);
         }
         return 0;
     }

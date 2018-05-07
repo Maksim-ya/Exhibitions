@@ -25,7 +25,7 @@ public class PaymentDaoImpl implements PaymentDao {
         return paymentDaoImpl;
     }
     @Override
-    public boolean addPayment(User user, List<Exposition> expositionList, BigDecimal totalPrice) {
+    public boolean addPayment(User user, List<Ticket> ticketList, BigDecimal totalPrice) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         Payment payment = new Payment();
@@ -56,19 +56,24 @@ public class PaymentDaoImpl implements PaymentDao {
 //        try {
 //            connection =  DBConnection.getConnection();
             connection.setAutoCommit(false);
-            for (int i = 0; i < expositionList.size(); i++) {
-                Ticket ticket = new Ticket();
-                ticket.setUser(user);
+            for (int i = 0; i < ticketList.size(); i++) {
+//                Ticket ticket = new Ticket();
+//                ticket.setUser(user);
+                Ticket ticket = ticketList.get(i);
                 ticket.setPayment(payment);
-                ticket.setExposition(expositionList.get(i));
-                ticket.setEventDate(null);
+                System.out.println(ticket);
+
+//                ticket.setExposition(ticketList.get(i));
+//                ticket.setEventDate(null);
+
 //                new SubscriptionDaoImpl().addSubscription(ticket);
                 preparedStatement = connection.prepareStatement(
                         "INSERT INTO tickets (userId,paymentId,expositionId,eventDate) VALUES (?,?,?,?)");
                 preparedStatement.setInt(1, ticket.getUser().getUserId());
                 preparedStatement.setInt(2, ticket.getPayment().getPaymentId());
                 preparedStatement.setInt(3, ticket.getExposition().getExpositionId());
-                preparedStatement.setTimestamp(4, ticket.getEventDate());
+                preparedStatement.setString(4, ticket.getEventDate().toString());
+//                LocalDate startDate = LocalDate.parse(resultSet.getString(6));
                 preparedStatement.executeUpdate();
             }
             BigDecimal priceUpdate = user.getAccount().subtract(totalPrice);

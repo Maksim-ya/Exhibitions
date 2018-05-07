@@ -27,7 +27,7 @@ charset=Utf-8" />
         <th width="200">Event Date</th>
         <%--<th width="200">Finish Date</th>--%>
     </tr>
-        <form action="application" method="post">
+        <form action="application" method="get">
 
         <c:forEach items="${listOfUserExpositions}" var="exposition">
         <tr>

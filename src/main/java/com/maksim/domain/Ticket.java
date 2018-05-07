@@ -1,6 +1,6 @@
 package com.maksim.domain;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 /**
  * Created by Максим on 03/May/18.
@@ -10,12 +10,12 @@ public class Ticket {
     private User user;
     private Payment payment;
     private Exposition exposition;
-    private Timestamp eventDate;
+    private LocalDate eventDate;
 
     public Ticket() {
     }
 
-    public Ticket(int ticketId,User user,Payment payment, Exposition exposition, Timestamp eventDate) {
+    public Ticket(int ticketId,User user,Payment payment, Exposition exposition, LocalDate eventDate) {
         this.ticketId = ticketId;
         this.user = user;
         this.payment = payment;
@@ -80,11 +80,11 @@ public class Ticket {
         this.exposition = exposition;
     }
 
-    public Timestamp getEventDate() {
+    public LocalDate getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(Timestamp eventDate) {
+    public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
     }
 

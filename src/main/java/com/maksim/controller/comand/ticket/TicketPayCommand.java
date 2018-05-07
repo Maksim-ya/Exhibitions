@@ -5,6 +5,7 @@ import com.maksim.controller.manager.ConfigurationManager;
 import com.maksim.controller.manager.MessageManager;
 import com.maksim.controller.manager.UserSession;
 import com.maksim.domain.Exposition;
+import com.maksim.domain.Ticket;
 import com.maksim.domain.User;
 import com.maksim.model.impl.PaymentDaoImpl;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class TicketPayCommand implements Command {
         int expositionAllId = (Integer) se.getAttribute(PARAM_EXPOSITION_ALL_ID);
         BigDecimal totalPrice = new BigDecimal(String.valueOf(se.getAttribute(PARAM_TOTAL_PRICE)));
 
-        System.out.println(request.getParameter("eventDate"));
+//        System.out.println(request.getParameter("eventDate"));
 
 
         if (user.getAccount().compareTo(totalPrice) >= 0) {
@@ -42,17 +44,16 @@ public class TicketPayCommand implements Command {
 //            SubscriptionDaoImpl subscriptionDao = new SubscriptionDaoImpl();
 //            Payment payment= new Payment();
 //            PaymentDaoImpl paymentDao = new PaymentDaoImpl();
-            List<Exposition> expositionList =new ArrayList<Exposition>();
+            List<Ticket> ticketList =new ArrayList<Ticket>();
             for (int i = 1; i <= expositionAllId; i++) {
                 Exposition exposition = (Exposition) se.getAttribute(PARAM_EXPOSITION + i);
+                Ticket ticket = new Ticket();
                 if (exposition != null) {
-                    expositionList.add(exposition);
-//                    subscription.setPublication(publication);
-//                    subscription.setUser(user);
-////                    subscriptionDao.addSubscription(subscription);
-//                    payment.setUser(user);
-//                    payment.setTotalPrice(totalPrice);
-//
+//                    expositionList.add(exposition);
+                    ticket.setUser(user);
+                    ticket.setExposition(exposition);
+                    ticket.setEventDate(LocalDate.parse(request.getParameter("eventDate"+i)));
+                    ticketList.add(ticket);
                     se.setAttribute(PARAM_EXPOSITION + i, null);
                     se.setAttribute(PARAM_IS_EXPOSITION, null);
                 }
@@ -60,10 +61,13 @@ public class TicketPayCommand implements Command {
             }
 
             try {
-                paymentResult = new PaymentDaoImpl().addPayment(user , expositionList,totalPrice);
+                paymentResult = new PaymentDaoImpl().addPayment(user , ticketList,totalPrice);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+
+
             if (paymentResult==true)
                 page = UserSession.loadUserDataToSession(request, user);
             else {request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.SERVER_ERROR_MESSAGE));

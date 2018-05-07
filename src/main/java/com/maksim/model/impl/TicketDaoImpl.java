@@ -8,6 +8,7 @@ import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.TicketDao;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class TicketDaoImpl implements TicketDao {
         int userId = resultSet.getInt(2);
         int paymentId = resultSet.getInt(3);
         int expositionId = resultSet.getInt(4);
-        Timestamp eventDate = resultSet.getTimestamp(5);
+        LocalDate eventDate = LocalDate.parse(resultSet.getString(5));
         User user = new UserDaoImpl().getInstance().findUserById(userId);
         Payment payment = new PaymentDaoImpl().getInstance().findPaymentById(paymentId);
         Exposition exposition = new ExpositionDaoImpl().getInstance().findById(expositionId);
