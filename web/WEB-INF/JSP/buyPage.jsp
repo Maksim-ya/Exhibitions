@@ -5,6 +5,7 @@
   Time: 20:09
   To change this template use File | Settings | File Templates.
 --%>
+<%--<%@ taglib uri="/WEB-INF/mytaglib.tld" prefix="mytag"%>--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:directive.page contentType="text/html;
 charset=Utf-8"/>
@@ -12,6 +13,9 @@ charset=Utf-8"/>
 <head>
     <title>BuyPage</title>
 </head>
+
+
+
 <body>
 <h3>Buy now</h3>
 <hr/>
@@ -26,6 +30,7 @@ charset=Utf-8"/>
         <th width="120">Showroom</th>
         <th width="200">Event Date</th>
         <th width="200">Number of Tickets</th>
+        <th width="200">Total</th>
         <%--<th width="200">Finish Date</th>--%>
     </tr>
     <form action="application" method="get">
@@ -48,14 +53,16 @@ charset=Utf-8"/>
                        min="${today}">
             </td>
                 <%--<td><a href="<c:url value='/edit/${publication.ticketId}'/>">Edit</a></td>--%>
-            <td>
-                <input type="text" name="numberTickets${exposition.expositionId}" size = 3 value="1" ><br/>
+            <td align="center">
+                <input type="text" name="numberOfPersons${exposition.expositionId}" size=2 value="1" ><br/>
                     <%--<a href="<c:url value='/main'/>">Buy</a></td>--%>
                     <%--<form action="application" method="post">--%>
                     <%--<input type="hidden" name="publicationId" value="${publication.publicationId}"/>--%>
                     <%--<button type="Submit" name="command" value="basket"> Buy</button>--%>
                     <%--</form>--%>
             </td>
+            <%--<td align="center"> <jsp:include page="ttt.jsp"/> </td>--%>
+
         </tr>
         </c:forEach>
 

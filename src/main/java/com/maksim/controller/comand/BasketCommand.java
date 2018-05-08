@@ -25,7 +25,7 @@ public class BasketCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
-        BigDecimal totalPrice = new BigDecimal("0.0");
+
 //        LocalDate max=null;
         HttpSession se = request.getSession(true);
         User user = (User) se.getAttribute(PARAM_USER);
@@ -52,7 +52,6 @@ public class BasketCommand implements Command {
                 se.setAttribute(PARAM_IS_EXPOSITION, "?//D");
                 se.setAttribute(PARAM_EXPOSITION+ i, exposition);
 
-                totalPrice=totalPrice.add(exposition.getPrice());
 
             }
         }
@@ -62,7 +61,8 @@ public class BasketCommand implements Command {
 
         se.setAttribute("listOfUserExpositions", list);
 
-        se.setAttribute(PARAM_TOTAL_PRICE, totalPrice);
+//        se.setAttribute(PARAM_TOTAL_PRICE, totalPrice);
+
 
 
 //        String publicationId = request.getParameter("publicationId");

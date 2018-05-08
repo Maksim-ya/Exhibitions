@@ -26,16 +26,39 @@ public class TicketPayCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
-        boolean paymentResult=false;
+        boolean paymentResult = false;
         HttpSession se = request.getSession(true);
         User user = (User) se.getAttribute(PARAM_USER);
         int expositionAllId = (Integer) se.getAttribute(PARAM_EXPOSITION_ALL_ID);
-        BigDecimal totalPrice = new BigDecimal(String.valueOf(se.getAttribute(PARAM_TOTAL_PRICE)));
+        BigDecimal totalPrice = new BigDecimal("0.0");
 
-//        System.out.println(request.getParameter("eventDate"));
+//        BigDecimal totalPrice = new BigDecimal(String.valueOf(se.getAttribute(PARAM_TOTAL_PRICE)));
+
+        List<Ticket> ticketList = new ArrayList<Ticket>();
+        for (int i = 1; i <= expositionAllId; i++) {
+            Exposition exposition = (Exposition) se.getAttribute(PARAM_EXPOSITION + i);
+            Ticket ticket = new Ticket();
+            if (exposition != null) {
+//                    expositionList.add(exposition);
+                ticket.setUser(user);
+                ticket.setExposition(exposition);
+                ticket.setNumberOfPersons(Integer.parseInt(request.getParameter("numberOfPersons" + i)));
+                ticket.setEventDate(LocalDate.parse(request.getParameter("eventDate" + i)));
+                ticketList.add(ticket);
+                se.setAttribute(PARAM_EXPOSITION + i, null);
+                se.setAttribute(PARAM_IS_EXPOSITION, null);
 
 
-        if (user.getAccount().compareTo(totalPrice) >= 0) {
+                totalPrice = totalPrice.add(exposition.getPrice().multiply(BigDecimal.valueOf(ticket.getNumberOfPersons())));
+
+            }
+        }
+
+
+        System.out.println(totalPrice);
+
+
+            if (user.getAccount().compareTo(totalPrice) >= 0) {
 
 //            BigDecimal priceUpdate = user.getAccount().subtract(totalPrice);
 //            user.setAccount(priceUpdate);
@@ -44,36 +67,21 @@ public class TicketPayCommand implements Command {
 //            SubscriptionDaoImpl subscriptionDao = new SubscriptionDaoImpl();
 //            Payment payment= new Payment();
 //            PaymentDaoImpl paymentDao = new PaymentDaoImpl();
-            List<Ticket> ticketList =new ArrayList<Ticket>();
-            for (int i = 1; i <= expositionAllId; i++) {
-                Exposition exposition = (Exposition) se.getAttribute(PARAM_EXPOSITION + i);
-                Ticket ticket = new Ticket();
-                if (exposition != null) {
-//                    expositionList.add(exposition);
-                    ticket.setUser(user);
-                    ticket.setExposition(exposition);
-                    ticket.setNumberOfPersons(Integer.parseInt(request.getParameter("numberTickets"+i)));
-                    ticket.setEventDate(LocalDate.parse(request.getParameter("eventDate"+i)));
-                    ticketList.add(ticket);
-                    se.setAttribute(PARAM_EXPOSITION + i, null);
-                    se.setAttribute(PARAM_IS_EXPOSITION, null);
-                }
+
 //                payment.setTotalPrice(totalPrice);
+
+                try {
+                    paymentResult = new PaymentDaoImpl().addPayment(user, ticketList, totalPrice);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (paymentResult == true)
+                    page = UserSession.loadUserDataToSession(request, user);
+                else {
+                    request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.SERVER_ERROR_MESSAGE));
+                    page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
+                }
             }
-
-            try {
-                paymentResult = new PaymentDaoImpl().addPayment(user , ticketList,totalPrice);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
-
-            if (paymentResult==true)
-                page = UserSession.loadUserDataToSession(request, user);
-            else {request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.SERVER_ERROR_MESSAGE));
-                page= ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);}
-        }
 
 
 //         java.util.Enumeration  cats = request.getAttributeNames();
@@ -106,11 +114,11 @@ public class TicketPayCommand implements Command {
 //            subscription.setLastAvailableEntryDate(LocalDateTime.now());
 //            subscriptionDao.update(subscription);
 //        }
-        else {
-            request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.PAYMENT_ERROR_MESSAGE));
-            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
-        }
+            else {
+                request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.PAYMENT_ERROR_MESSAGE));
+                page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
+            }
 
-        return page;
+            return page;
+        }
     }
-}
