@@ -30,7 +30,7 @@ charset=Utf-8"/>
         <th width="120">Showroom</th>
         <th width="200">Event Date</th>
         <th width="200">Number of Tickets</th>
-        <th width="200">Total</th>
+        <%--<th width="200">Total</th>--%>
         <%--<th width="200">Finish Date</th>--%>
     </tr>
     <form action="application" method="get">

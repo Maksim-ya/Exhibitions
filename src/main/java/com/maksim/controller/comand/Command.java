@@ -12,7 +12,7 @@ public interface Command {
     String PARAM_USER = "user";
     String PARAM_EXPOSITION = "exposition";
     String PARAM_EXPOSITION_ALL_ID = "expositionAllId";
-    String PARAM_TOTAL_PRICE = "totalPrice";
+//    String PARAM_TOTAL_PRICE = "totalPrice";
     String PARAM_IS_EXPOSITION  = "isExposition";
 
 
