@@ -4,6 +4,7 @@ import com.maksim.domain.Exposition;
 import com.maksim.domain.Showroom;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.ShowroomDao;
+import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -16,6 +17,8 @@ import java.time.LocalTime;
  * Created by Максим on 03/May/18.
  */
 public class ShowroomDaoImpl implements ShowroomDao {
+    private static final Logger logger = Logger.getLogger(ShowroomDaoImpl.class);
+
     private final static ShowroomDaoImpl showroomDaoImpl = new ShowroomDaoImpl();
 
     public ShowroomDaoImpl() {
@@ -39,7 +42,7 @@ public class ShowroomDaoImpl implements ShowroomDao {
             resultSet = statement.executeQuery();
             return createShowroomFromResult(resultSet);
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, statement, resultSet);
         }

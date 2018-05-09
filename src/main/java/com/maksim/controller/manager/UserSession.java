@@ -3,6 +3,7 @@ package com.maksim.controller.manager;
 import com.maksim.domain.Ticket;
 import com.maksim.domain.User;
 import com.maksim.model.impl.TicketDaoImpl;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,12 +15,16 @@ import static com.maksim.controller.comand.Command.PARAM_IS_EXPOSITION;
  * Created by Максим on 03/May/18.
  */
 public class UserSession {
+    private static final Logger logger = Logger.getLogger(UserSession.class);
+
+
     private static final String PARAM_USER = "user";
     private static final String PARAM_USERNAME = "name";
     private static final String PARAM_TICKETS = "listOfTickets";
 
 
     public static String loadUserDataToSession(HttpServletRequest request, User user) {
+        logger.info(Logs.LOAD_USER_TO_SESSION);
         String page;
         HttpSession se = request.getSession(true);
         se.setAttribute(PARAM_USER, user);

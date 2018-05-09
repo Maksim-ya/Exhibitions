@@ -4,6 +4,7 @@ import com.maksim.domain.Exposition;
 import com.maksim.domain.Showroom;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.ExpositionDao;
+import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -15,6 +16,7 @@ import java.util.List;
  * Created by Максим on 03/May/18.
  */
 public class ExpositionDaoImpl implements ExpositionDao {
+    private static final Logger logger = Logger.getLogger(ExpositionDaoImpl.class);
 
     private final static ExpositionDaoImpl expositionDaoImpl = new ExpositionDaoImpl();
 
@@ -37,7 +39,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
             resultSet = preparedStatement.executeQuery();
             return createIdFromResult(resultSet);
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, preparedStatement, resultSet);
         }
@@ -56,7 +58,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
             resultSet = statement.executeQuery();
             return resultToList(resultSet);
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, statement, resultSet);
         }
@@ -76,7 +78,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
             resultSet = statement.executeQuery();
             return createExpositionFromResult(resultSet);
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, statement, resultSet);
         }
@@ -93,14 +95,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
         return false;
     }
 
-//    private List<Integer> resultToListId(ResultSet resultSet) throws SQLException {
-//        List<Integer> list = new ArrayList<Integer>();
-//        while (resultSet.next()) {
-//            int publicationId = createIdFromResult(resultSet);
-//            list.add(publicationId);
-//        }
-//        return list;
-//    }
+
     private Integer createIdFromResult(ResultSet resultSet) throws SQLException {
         if (resultSet.isBeforeFirst()) resultSet.last();
 

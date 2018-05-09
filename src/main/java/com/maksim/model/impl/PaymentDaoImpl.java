@@ -6,6 +6,7 @@ import com.maksim.domain.Ticket;
 import com.maksim.domain.User;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.PaymentDao;
+import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -16,6 +17,8 @@ import java.util.List;
  * Created by Максим on 03/May/18.
  */
 public class PaymentDaoImpl implements PaymentDao {
+    private static final Logger logger = Logger.getLogger(PaymentDaoImpl.class);
+
     private final static PaymentDaoImpl paymentDaoImpl= new PaymentDaoImpl();
 
     public PaymentDaoImpl() {
@@ -94,9 +97,10 @@ public class PaymentDaoImpl implements PaymentDao {
             try {
                 connection.rollback();
             } catch (SQLException e1) {
-                e1.printStackTrace();
+                logger.error(e1.getMessage());
             }
             new PaymentDaoImpl().deletePayment(payment);
+            logger.error(e.getMessage());
             return false;
 
         } finally {
@@ -118,7 +122,8 @@ public class PaymentDaoImpl implements PaymentDao {
             resultSet = preparedStatement.executeQuery();
             return createPaymentFromResult(resultSet);
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
+
         } finally {
             DBConnection.close(connection, preparedStatement, resultSet);
         }
@@ -138,7 +143,7 @@ public class PaymentDaoImpl implements PaymentDao {
             resultSet = preparedStatement.executeQuery();
             return createPaymentFromResult(resultSet);
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, preparedStatement, resultSet);
         }
@@ -156,7 +161,7 @@ public class PaymentDaoImpl implements PaymentDao {
             preparedStatement.setInt(1, payment.getPaymentId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, preparedStatement);
         }

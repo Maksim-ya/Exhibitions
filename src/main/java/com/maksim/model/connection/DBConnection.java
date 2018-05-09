@@ -14,7 +14,7 @@ public class DBConnection {
 
         try {
             InitialContext initContext = new InitialContext();
-            DataSource ds = (DataSource) initContext.lookup("java:comp/env/jdbc/periodicals");
+            DataSource ds = (DataSource) initContext.lookup("java:comp/env/jdbc/exhibitions");
             connection = ds.getConnection();
         } catch (NamingException e) {
             e.printStackTrace();

@@ -2,7 +2,9 @@ package com.maksim.controller;
 
 import com.maksim.controller.comand.Command;
 import com.maksim.controller.manager.ConfigurationManager;
+import com.maksim.controller.manager.Logs;
 import com.maksim.controller.manager.MessageManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +17,7 @@ import java.io.IOException;
  * Created by Максим on 03/May/18.
  */
 public class FrontController extends HttpServlet {
+    private static final Logger logger = Logger.getLogger(FrontController.class);
 
     //объект, содержащий список возможных команд
     RequestHelper requestHelper = RequestHelper.getInstance();
@@ -45,18 +48,19 @@ public class FrontController extends HttpServlet {
             page = command.execute(request, response);
 // метод возвращает страницу ответа
         } catch (ServletException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
 //генерация сообщения об ошибке
             request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.SERVLET_EXCEPTION_ERROR_MESSAGE));
 //вызов JSP-страницы c cообщением об ошибке
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.IO_EXCEPTION_ERROR_MESSAGE));
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
         }
 //вызов страницы ответа на запрос
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+        logger.info(Logs.REDIRECT_TO + page);
         dispatcher.forward(request, response);
     }
 }

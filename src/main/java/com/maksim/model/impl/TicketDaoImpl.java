@@ -6,6 +6,7 @@ import com.maksim.domain.Ticket;
 import com.maksim.domain.User;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.TicketDao;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -16,6 +17,8 @@ import java.util.List;
  * Created by Максим on 03/May/18.
  */
 public class TicketDaoImpl implements TicketDao {
+    private static final Logger logger = Logger.getLogger(TicketDaoImpl.class);
+
     private final static TicketDaoImpl ticketDaoImpl = new TicketDaoImpl();
 
     public TicketDaoImpl() {
@@ -38,7 +41,7 @@ public class TicketDaoImpl implements TicketDao {
             List<Ticket> list =  resultToList(resultSet);
             return list;
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, statement, resultSet);
         }
@@ -83,7 +86,7 @@ public class TicketDaoImpl implements TicketDao {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, preparedStatement);
         }

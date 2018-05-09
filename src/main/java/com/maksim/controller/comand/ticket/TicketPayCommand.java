@@ -23,6 +23,7 @@ import java.util.List;
  * Created by Максим on 03/May/18.
  */
 public class TicketPayCommand implements Command {
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;

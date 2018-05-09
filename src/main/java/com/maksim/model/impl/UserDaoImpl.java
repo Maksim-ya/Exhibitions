@@ -3,6 +3,7 @@ package com.maksim.model.impl;
 import com.maksim.domain.User;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.UserDao;
+import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -15,6 +16,8 @@ import java.util.List;
  * Created by Максим on 03/May/18.
  */
 public class UserDaoImpl implements UserDao {
+    private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
+
     private final static UserDaoImpl userDaoImpl = new UserDaoImpl();
 
     public UserDaoImpl() {
@@ -38,7 +41,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, preparedStatement);
         }
@@ -73,7 +76,7 @@ public class UserDaoImpl implements UserDao {
             resultSet = statement.executeQuery();
             return createUserFromResult(resultSet);
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, statement, resultSet);
         }
@@ -95,7 +98,7 @@ public class UserDaoImpl implements UserDao {
             User user = createUserFromResult(resultSet);
             return user;
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, statement, resultSet);
         }
@@ -111,7 +114,6 @@ public class UserDaoImpl implements UserDao {
         String fullName = resultSet.getString(4);
         String address = resultSet.getString(5);
         BigDecimal account = resultSet.getBigDecimal(6);
-//        String role = resultSet.getString(7);
         return new User(userId, login, password, fullName, address, account);
     }
 
@@ -131,7 +133,7 @@ public class UserDaoImpl implements UserDao {
             statement.setInt(6, user.getUserId());
             statement.executeUpdate();
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, statement, resultSet);
         }
