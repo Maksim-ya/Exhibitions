@@ -20,7 +20,10 @@
 <%--<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>--%>
 <%--<%@ page language="java" contentType="text/html;charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>--%>
 <html>
-<head><title>Login</title></head>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+</head>
 <%--<c:out value="logoutMessage"/>--%>
 <jsp:expression> (request.getAttribute("logoutMessage") != null)
     ?(String)request.getAttribute("logoutMessage") :""

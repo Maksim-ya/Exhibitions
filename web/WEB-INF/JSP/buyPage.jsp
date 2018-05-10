@@ -12,9 +12,8 @@ charset=Utf-8"/>
 <html>
 <head>
     <title>BuyPage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 </head>
-
-
 
 <body>
 <h3>Buy now</h3>

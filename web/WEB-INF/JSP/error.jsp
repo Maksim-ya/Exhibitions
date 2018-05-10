@@ -23,7 +23,10 @@
 <%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>--%>
 <%--<jsp:directive.page contentType="text/html; charset=Utf-8"/>--%>
 <html>
-<head><title>Error</title></head>
+<head>
+    <title>Error</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+</head>
 <body>
 <h3>Error</h3>
 <hr/>
