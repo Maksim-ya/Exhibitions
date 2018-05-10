@@ -1,5 +1,6 @@
 package com.maksim.controller.manager;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ResourceBundle;
  */
 public class MessageManager {
     private static MessageManager instance;
-    private ResourceBundle resourceBundle;
+//    private ResourceBundle resourceBundle;
     //класс извлекает информацию из файла messages. properties
     private static final String BUNDLE_NAME = "messages";
     public static final String LOGIN_ERROR_MESSAGE = "LOGIN_ERROR_MESSAGE";
@@ -18,6 +19,16 @@ public class MessageManager {
     public static final String SUCCESS_REGISTRATION_MESSAGE = "SUCCESS_REGISTRATION_MESSAGE";
     public static final String SERVER_ERROR_MESSAGE = "SERVER_ERROR_MESSAGE";
 
+    public static final String BUY = "BUY";
+    public static final String VIEW_ALL_TOPICS = "VIEW_ALL_TOPICS";
+
+    public static final Locale RUSSIAN = new Locale("ru");
+    public static final Locale ENGLISH  = new Locale("en");
+
+    private static ResourceBundle resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME);
+    public static void setLocale(Locale locale) {
+        resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME, locale);
+    }
 
     public static MessageManager getInstance() {
 
