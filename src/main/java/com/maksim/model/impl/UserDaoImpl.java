@@ -17,10 +17,11 @@ import java.util.List;
  */
 public class UserDaoImpl implements UserDao {
     private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
+    private  Connection connection;
 
     private final static UserDaoImpl userDaoImpl = new UserDaoImpl();
 
-    public UserDaoImpl() {
+    private UserDaoImpl() {
     }
 
     static UserDaoImpl getInstance() {
@@ -86,21 +87,21 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User checkLoginAndPassword(String login, String password) {
         Connection connection = null;
-        PreparedStatement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             connection = DBConnection.getConnection();
-            statement = connection.prepareStatement(
+            preparedStatement = connection.prepareStatement(
                     "SELECT * FROM USERS WHERE LOGIN = ? AND PASSWORD = ?");
-            statement.setString(1, login);
-            statement.setString(2, password);
-            resultSet = statement.executeQuery();
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
             User user = createUserFromResult(resultSet);
             return user;
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            DBConnection.close(connection, statement, resultSet);
+            DBConnection.close(connection, preparedStatement, resultSet);
         }
         return null;
     }
@@ -119,23 +120,23 @@ public class UserDaoImpl implements UserDao {
 
     public void updateUser(User user) {
         Connection connection = null;
-        PreparedStatement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             connection = DBConnection.getConnection();
-            statement = connection.prepareStatement(
+            preparedStatement = connection.prepareStatement(
                     "UPDATE USERS  SET LOGIN = ?, PASSWORD = ?, FULLNAME = ?, ADDRESS = ?, ACCOUNT= ? WHERE USERID = ? ");
-            statement.setString(1, user.getLogin());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getFullName());
-            statement.setString(4, user.getAddress());
-            statement.setBigDecimal(5, user.getAccount());
-            statement.setInt(6, user.getUserId());
-            statement.executeUpdate();
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getFullName());
+            preparedStatement.setString(4, user.getAddress());
+            preparedStatement.setBigDecimal(5, user.getAccount());
+            preparedStatement.setInt(6, user.getUserId());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            DBConnection.close(connection, statement, resultSet);
+            DBConnection.close(connection, preparedStatement, resultSet);
         }
     }
 }

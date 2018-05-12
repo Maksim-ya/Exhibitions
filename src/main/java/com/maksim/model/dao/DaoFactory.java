@@ -9,5 +9,7 @@ public interface DaoFactory {
     UserDao getUserDao();
     ExpositionDao getExpositionDao();
     TicketDao getTicketDao();
+    PaymentDao getPaymentDao();
+    ShowroomDao getShowroomDao();
 
 }

@@ -4,6 +4,8 @@ import com.maksim.controller.comand.Command;
 import com.maksim.controller.manager.ConfigurationManager;
 import com.maksim.controller.manager.MessageManager;
 import com.maksim.domain.User;
+import com.maksim.model.dao.UserDao;
+import com.maksim.model.impl.DaoFactoryImpl;
 import com.maksim.model.impl.UserDaoImpl;
 
 import javax.servlet.ServletException;
@@ -21,13 +23,13 @@ public class RegistrationCommand implements Command {
     private static final String PARAM_NAME_ADDRESS = "address";
 
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String page = null;
+        String page ;
 //извлечение из запроса логина и пароля
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String pass = request.getParameter(PARAM_NAME_PASSWORD);
         String fullName = request.getParameter(PARAM_NAME_FULL_NAME);
         String address = request.getParameter(PARAM_NAME_ADDRESS);
-        UserDaoImpl userDao = new UserDaoImpl();
+        UserDao userDao = DaoFactoryImpl.getInstance().getUserDao();
 
         User user = new User();
 

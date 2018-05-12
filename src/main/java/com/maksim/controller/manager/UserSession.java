@@ -2,6 +2,8 @@ package com.maksim.controller.manager;
 
 import com.maksim.domain.Ticket;
 import com.maksim.domain.User;
+import com.maksim.model.dao.TicketDao;
+import com.maksim.model.impl.DaoFactoryImpl;
 import com.maksim.model.impl.TicketDaoImpl;
 import org.apache.log4j.Logger;
 
@@ -34,7 +36,7 @@ public class UserSession {
         if (se.getAttribute(PARAM_IS_EXPOSITION) != null) {
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);
         } else {
-            TicketDaoImpl ticketDao= new TicketDaoImpl();
+            TicketDao ticketDao= DaoFactoryImpl.getInstance().getTicketDao();
             List<Ticket> list = ticketDao.findTicketsByUser(user.getUserId());
 //                for (int i = 0; i <list.size() ; i++) {
 //                    System.out.println(list.get(i));

@@ -20,7 +20,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
 
     private final static ExpositionDaoImpl expositionDaoImpl = new ExpositionDaoImpl();
 
-    public ExpositionDaoImpl() {
+    private ExpositionDaoImpl() {
     }
 
     static ExpositionDaoImpl getInstance() {
@@ -120,7 +120,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
         int showroomId = resultSet.getInt(5);
         LocalDate startDate = LocalDate.parse(resultSet.getString(6));
         LocalDate finishDate = LocalDate.parse(resultSet.getString(7));
-        Showroom showroom = new ShowroomDaoImpl().getInstance().findById(showroomId);
+        Showroom showroom = ShowroomDaoImpl.getInstance().findById(showroomId);
         return new Exposition (expositionId, expositionTitle, expositionPrice, topic, showroom, startDate,finishDate);
     }
 }

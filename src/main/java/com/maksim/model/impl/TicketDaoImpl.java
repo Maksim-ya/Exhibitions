@@ -21,12 +21,12 @@ public class TicketDaoImpl implements TicketDao {
 
     private final static TicketDaoImpl ticketDaoImpl = new TicketDaoImpl();
 
-    public TicketDaoImpl() {
+    private TicketDaoImpl() {
     }
-
     static TicketDaoImpl getInstance() {
         return ticketDaoImpl;
     }
+
     @Override
     public List<Ticket> findTicketsByUser(int userId) {
         Connection connection = null;
@@ -65,9 +65,9 @@ public class TicketDaoImpl implements TicketDao {
         int expositionId = resultSet.getInt(4);
         int numberOfPersons = resultSet.getInt(5);
         LocalDate eventDate = LocalDate.parse(resultSet.getString(6));
-        User user = new UserDaoImpl().getInstance().findUserById(userId);
-        Payment payment = new PaymentDaoImpl().getInstance().findPaymentById(paymentId);
-        Exposition exposition = new ExpositionDaoImpl().getInstance().findById(expositionId);
+        User user = UserDaoImpl.getInstance().findUserById(userId);
+        Payment payment = PaymentDaoImpl.getInstance().findPaymentById(paymentId);
+        Exposition exposition =  ExpositionDaoImpl.getInstance().findById(expositionId);
         return new Ticket(ticketId, user, payment,exposition,numberOfPersons,eventDate );
     }
 
@@ -78,11 +78,12 @@ public class TicketDaoImpl implements TicketDao {
         try {
             connection =  DBConnection.getConnection();
             preparedStatement = connection.prepareStatement(
-                    "INSERT INTO tickets (paymentId, expositionId,numberOfPersons, eventDate) VALUES (?,?,?,?)");
-            preparedStatement.setInt(1, ticket.getPayment().getPaymentId());
-            preparedStatement.setInt(2, ticket.getExposition().getExpositionId());
-            preparedStatement.setInt(3, ticket.getNumberOfPersons());
-            preparedStatement.setString(4, ticket.getEventDate().toString());
+                    "INSERT INTO tickets (userId,paymentId, expositionId,numberOfPersons, eventDate) VALUES (?,?,?,?,?)");
+            preparedStatement.setInt(1, ticket.getUser().getUserId());
+            preparedStatement.setInt(2, ticket.getPayment().getPaymentId());
+            preparedStatement.setInt(3, ticket.getExposition().getExpositionId());
+            preparedStatement.setInt(4, ticket.getNumberOfPersons());
+            preparedStatement.setString(5, ticket.getEventDate().toString());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {

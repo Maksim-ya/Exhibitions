@@ -1,12 +1,10 @@
 package com.maksim.model.impl;
 
-import com.maksim.domain.Exposition;
 import com.maksim.domain.Showroom;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.ShowroomDao;
 import org.apache.log4j.Logger;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +19,7 @@ public class ShowroomDaoImpl implements ShowroomDao {
 
     private final static ShowroomDaoImpl showroomDaoImpl = new ShowroomDaoImpl();
 
-    public ShowroomDaoImpl() {
+    private ShowroomDaoImpl() {
     }
 
     static ShowroomDaoImpl getInstance() {

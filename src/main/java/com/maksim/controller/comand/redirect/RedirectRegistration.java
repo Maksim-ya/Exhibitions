@@ -12,7 +12,7 @@ import java.io.IOException;
 public class RedirectRegistration implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String page = null;
+        String page;
         page = ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
         return page;
     }
