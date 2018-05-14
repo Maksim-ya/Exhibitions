@@ -24,11 +24,14 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link href="/css/color.css" rel="stylesheet" type="text/css">
+
 </head>
 <c:if test="${requestScope.logoutMessage!=null}">
     <h6>
-        <span class="green-text">
+        <success>
         <fmt:message bundle="${messages}" key="SUCCESS_LOGOUT_MESSAGE"/>
+        </success>
     </h6>
 </c:if>
 <hr/>
@@ -42,8 +45,9 @@
     <br/>
     <c:if test="${requestScope.errorMessage!=null}">
         <h6>
-            <span class="red-text">
+            <error>
             <fmt:message bundle="${messages}" key="LOGIN_ERROR_MESSAGE"/>
+            </error>
         </h6>
     </c:if>
     <input type="submit" value="Enter">
