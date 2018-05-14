@@ -16,21 +16,21 @@
 </html>
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>--%>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setBundle basename="messages" var="messages"/>
 <%--<%@ page language="java" contentType="text/html;charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>--%>
 <html>
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 </head>
-<%--<c:out value="logoutMessage"/>--%>
-<jsp:expression> (request.getAttribute("logoutMessage") != null)
-    ?(String)request.getAttribute("logoutMessage") :""
-</jsp:expression>
-<jsp:expression> (request.getAttribute("registrationMessage") != null)
-    ?(String)request.getAttribute("registrationMessage") :""
-</jsp:expression>
+<c:if test="${requestScope.logoutMessage!=null}">
+    <h6>
+        <span class="green-text">
+        <fmt:message bundle="${messages}" key="SUCCESS_LOGOUT_MESSAGE"/>
+    </h6>
+</c:if>
 <hr/>
 <body><h3>Login</h3>
 <form name="loginForm" method="POST" action="application">
@@ -40,6 +40,12 @@
     Password:<br/>
     <input type="password" name="password" >
     <br/>
+    <c:if test="${requestScope.errorMessage!=null}">
+        <h6>
+            <span class="red-text">
+            <fmt:message bundle="${messages}" key="LOGIN_ERROR_MESSAGE"/>
+        </h6>
+    </c:if>
     <input type="submit" value="Enter">
 </form>
 <hr/>

@@ -17,7 +17,6 @@ import java.util.List;
  */
 public class UserDaoImpl implements UserDao {
     private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
-    private  Connection connection;
 
     private final static UserDaoImpl userDaoImpl = new UserDaoImpl();
 

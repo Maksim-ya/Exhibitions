@@ -34,7 +34,7 @@ public class LoginCommand implements Command {
            page= UserSession.loadUserDataToSession( request, user);
         } else {
             request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.LOGIN_ERROR_MESSAGE));
-            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
+            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.LOGIN_PAGE_PATH);
         }
         return page;
     }
