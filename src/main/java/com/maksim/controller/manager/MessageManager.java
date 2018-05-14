@@ -12,12 +12,15 @@ public class MessageManager {
     //класс извлекает информацию из файла messages. properties
     private static final String BUNDLE_NAME = "messages";
     public static final String LOGIN_ERROR_MESSAGE = "LOGIN_ERROR_MESSAGE";
+    public static final String LOGIN_NOT_UNIQUE_MESSAGE = "LOGIN_NOT_UNIQUE_MESSAGE";
     public static final String PAYMENT_ERROR_MESSAGE = "PAYMENT_ERROR_MESSAGE";
     public static final String SERVLET_EXCEPTION_ERROR_MESSAGE = "SERVLET_EXCEPTION_ERROR_MESSAGE";
     public static final String IO_EXCEPTION_ERROR_MESSAGE = "IO_EXCEPTION_ERROR_MESSAGE";
     public static final String SUCCESS_LOGOUT_MESSAGE = "SUCCESS_LOGOUT_MESSAGE";
     public static final String SUCCESS_REGISTRATION_MESSAGE = "SUCCESS_REGISTRATION_MESSAGE";
     public static final String SERVER_ERROR_MESSAGE = "SERVER_ERROR_MESSAGE";
+    public static final String REQUIRED_FIELD_MESSAGE = "REQUIRED_FIELD_MESSAGE";
+
 
     public static final String BUY = "BUY";
     public static final String VIEW_ALL_TOPICS = "VIEW_ALL_TOPICS";

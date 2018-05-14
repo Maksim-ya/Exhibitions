@@ -7,6 +7,7 @@ import com.maksim.domain.User;
 import com.maksim.model.dao.UserDao;
 import com.maksim.model.impl.DaoFactoryImpl;
 import com.maksim.model.impl.UserDaoImpl;
+import com.maksim.validator.UserValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,22 +24,25 @@ public class RegistrationCommand implements Command {
     private static final String PARAM_NAME_ADDRESS = "address";
 
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String page ;
+        String page;
 //извлечение из запроса логина и пароля
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String pass = request.getParameter(PARAM_NAME_PASSWORD);
         String fullName = request.getParameter(PARAM_NAME_FULL_NAME);
         String address = request.getParameter(PARAM_NAME_ADDRESS);
         UserDao userDao = DaoFactoryImpl.getInstance().getUserDao();
-
         User user = new User();
 
-        user.setLogin(login);
-        user.setPassword(pass);
-        user.setFullName(fullName);
-        user.setAddress(address);
 
-
+        if (UserValidator.checkLogin(login)) {
+            request.setAttribute("loginNotUniqueErrorMessage", MessageManager.getInstance().getMessage(MessageManager.LOGIN_NOT_UNIQUE_MESSAGE));
+            return ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
+        } else {
+            user.setLogin(login);
+            user.setPassword(pass);
+            user.setFullName(fullName);
+            user.setAddress(address);
+        }
 
         if (userDao.addUser(user)) {
 

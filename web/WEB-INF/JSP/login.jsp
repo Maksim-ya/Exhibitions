@@ -34,6 +34,13 @@
         </success>
     </h6>
 </c:if>
+<c:if test="${requestScope.registrationMessage!=null}">
+    <h6>
+        <success>
+            <fmt:message bundle="${messages}" key="SUCCESS_REGISTRATION_MESSAGE"/>
+        </success>
+    </h6>
+</c:if>
 <hr/>
 <body><h3>Login</h3>
 <form name="loginForm" method="POST" action="application">

@@ -3,6 +3,7 @@ package com.maksim.model.impl;
 import com.maksim.domain.User;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.UserDao;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
@@ -54,7 +55,24 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findUserByLogin(String UserName) {
+    public User findUserByLogin(String login) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(
+                    "SELECT * FROM USERS WHERE LOGIN = ?");
+            statement.setString(1, login);
+            resultSet = statement.executeQuery();
+            User user = createUserFromResult(resultSet);
+            System.out.println(user);
+            return  user;
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        } finally {
+            DBConnection.close(connection, statement, resultSet);
+        }
         return null;
     }
 
@@ -74,7 +92,8 @@ public class UserDaoImpl implements UserDao {
                     "SELECT * FROM USERS WHERE USERID = ?");
             statement.setInt(1, userId);
             resultSet = statement.executeQuery();
-            return createUserFromResult(resultSet);
+//             if (resultSet!=null)
+                return createUserFromResult(resultSet);
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
@@ -115,6 +134,7 @@ public class UserDaoImpl implements UserDao {
         String address = resultSet.getString(5);
         BigDecimal account = resultSet.getBigDecimal(6);
         return new User(userId, login, password, fullName, address, account);
+
     }
 
     public void updateUser(User user) {
