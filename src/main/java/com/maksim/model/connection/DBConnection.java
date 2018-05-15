@@ -1,5 +1,7 @@
 package com.maksim.model.connection;
 
+import org.apache.log4j.Logger;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -7,6 +9,7 @@ import java.sql.*;
 
 
 public class DBConnection {
+    private static final Logger logger = Logger.getLogger(DBConnection.class);
 
     private static Connection connection;
 
@@ -36,7 +39,7 @@ public class DBConnection {
                 resultSet.close();
             }
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
@@ -50,7 +53,7 @@ public class DBConnection {
                 connection.close();
             }
         } catch (SQLException e) {
-//            LOGGER.error(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 }
