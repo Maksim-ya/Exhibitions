@@ -34,13 +34,7 @@ public class BasketCommand implements Command {
         ExpositionDao expositionDao = DaoFactoryImpl.getInstance().getExpositionDao();
         int expositionAllId = expositionDao.findAllId();
         se.setAttribute(PARAM_EXPOSITION_ALL_ID, expositionAllId);
-//        System.out.println(expositionAllId);
 
-//        java.util.Enumeration cats = request.getAttributeNames();
-//        List<Object> list = java.util.Collections.list(cats);
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(list.get(i));
-//        }
         for (int i = 1; i <= expositionAllId; i++) {
             String expositionId = request.getParameter(PARAM_EXPOSITION + i);
 

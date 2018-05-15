@@ -52,7 +52,6 @@ public class TicketPayCommand implements Command {
                     .getPrice().multiply(BigDecimal.valueOf(ticket.getNumberOfPersons())));
         }
 
-        System.out.println(ticketList);
         if (user.getAccount().compareTo(totalPrice) >= 0) {
             try {
                 TicketService.getService().ticketTransaction(user, ticketList, totalPrice);

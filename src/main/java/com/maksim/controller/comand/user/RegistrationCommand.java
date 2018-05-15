@@ -27,22 +27,33 @@ public class RegistrationCommand implements Command {
         String page;
 //извлечение из запроса логина и пароля
         String login = request.getParameter(PARAM_NAME_LOGIN);
-        String pass = request.getParameter(PARAM_NAME_PASSWORD);
+        String password = request.getParameter(PARAM_NAME_PASSWORD);
+        String confirmPassword = request.getParameter(PARAM_NAME_PASSWORD);
         String fullName = request.getParameter(PARAM_NAME_FULL_NAME);
         String address = request.getParameter(PARAM_NAME_ADDRESS);
-        UserDao userDao = DaoFactoryImpl.getInstance().getUserDao();
         User user = new User();
 
-
+        if(login.equals("")||password.equals("")||confirmPassword.equals("")||fullName.equals("")||address.equals("")){
+            request.setAttribute("requiredFieldMessage", MessageManager.getInstance().getMessage(MessageManager.REQUIRED_FIELD_MESSAGE));
+            return ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
+        }
         if (UserValidator.checkLogin(login)) {
             request.setAttribute("loginNotUniqueErrorMessage", MessageManager.getInstance().getMessage(MessageManager.LOGIN_NOT_UNIQUE_MESSAGE));
             return ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
-        } else {
+        } if (UserValidator.checkPassword(password, confirmPassword)) {
+            request.setAttribute("passwordsDoNotMatchErrorMessage", MessageManager.getInstance().getMessage(MessageManager.PASSWORDS_DO_NOT_MATCH_ERROR_MESSAGE));
+            return ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
+        }if (UserValidator.checkEmail(address)) {
+            request.setAttribute("invalidEmailErrorMessage", MessageManager.getInstance().getMessage(MessageManager.PASSWORDS_DO_NOT_MATCH_ERROR_MESSAGE));
+            return ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
+        }
+        else {
             user.setLogin(login);
-            user.setPassword(pass);
+            user.setPassword(password);
             user.setFullName(fullName);
             user.setAddress(address);
         }
+        UserDao userDao = DaoFactoryImpl.getInstance().getUserDao();
 
         if (userDao.addUser(user)) {
 

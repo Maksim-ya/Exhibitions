@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 07/02/2018
-  Time: 20:44
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -20,8 +14,15 @@
 <form name="registrationForm" method="POST" action="application">
     <input type="hidden" name="command" value="registration"/>
     <h2>Registration:</h2><br/>
-    Login:<br/>
+    Login*:<br/>
     <input type="text" name="login" value=""><br/>
+    <c:if test="${requestScope.requiredFieldMessage!=null}">
+        <h6>
+            <error>
+                <fmt:message bundle="${messages}" key="REQUIRED_FIELD_MESSAGE"/>
+            </error>
+        </h6>
+    </c:if>
     <c:if test="${requestScope.loginNotUniqueErrorMessage!=null}">
         <h6>
             <error>
@@ -29,11 +30,41 @@
             </error>
         </h6>
     </c:if>
-    Password:<br/>
+    Password*:<br/>
     <input type="password" name="password" value=""><br/>
-    FullName:<br/>
+    <c:if test="${requestScope.requiredFieldMessage!=null}">
+        <h6>
+            <error>
+                <fmt:message bundle="${messages}" key="REQUIRED_FIELD_MESSAGE"/>
+            </error>
+        </h6>
+    </c:if>
+    Confirm Password*:<br/>
+    <input type="password" name="confirmPassword" value=""><br/>
+    <c:if test="${requestScope.requiredFieldMessage!=null}">
+        <h6>
+            <error>
+                <fmt:message bundle="${messages}" key="REQUIRED_FIELD_MESSAGE"/>
+            </error>
+        </h6>
+    </c:if>
+    <c:if test="${requestScope.passwordsDoNotMatchErrorMessage!=null}">
+        <h6>
+            <error>
+                <fmt:message bundle="${messages}" key="PASSWORDS_DO_NOT_MATCH_ERROR_MESSAGE"/>
+            </error>
+        </h6>
+    </c:if>
+    FullName*:<br/>
     <input type="text" name="fullName" value=""><br/>
-    Address:<br/>
+    <c:if test="${requestScope.requiredFieldMessage!=null}">
+        <h6>
+            <error>
+                <fmt:message bundle="${messages}" key="REQUIRED_FIELD_MESSAGE"/>
+            </error>
+        </h6>
+    </c:if>
+    Address*:<br/>
     <input type="text" name="address" value="">
     <br/>
     <h6>
@@ -41,6 +72,13 @@
             <fmt:message bundle="${messages}" key="REQUIRED_FIELD_MESSAGE"/>
         </info>
     </h6>
+    <c:if test="${requestScope.invalidEmailErrorMessage!=null}">
+        <h6>
+            <error>
+                <fmt:message bundle="${messages}" key="INVALID_EMAIL_ERROR_MESSAGE"/>
+            </error>
+        </h6>
+    </c:if>
     <input type="submit" value="Enter">
 </form>
 </body>

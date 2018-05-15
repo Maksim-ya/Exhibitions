@@ -38,9 +38,7 @@ public class UserSession {
         } else {
             TicketDao ticketDao= DaoFactoryImpl.getInstance().getTicketDao();
             List<Ticket> list = ticketDao.findTicketsByUser(user.getUserId());
-//                for (int i = 0; i <list.size() ; i++) {
-//                    System.out.println(list.get(i));
-//                }
+
             request.setAttribute(PARAM_TICKETS, list);
 
             //определение пути к main.jsp

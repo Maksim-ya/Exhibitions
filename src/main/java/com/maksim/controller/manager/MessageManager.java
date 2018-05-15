@@ -20,6 +20,9 @@ public class MessageManager {
     public static final String SUCCESS_REGISTRATION_MESSAGE = "SUCCESS_REGISTRATION_MESSAGE";
     public static final String SERVER_ERROR_MESSAGE = "SERVER_ERROR_MESSAGE";
     public static final String REQUIRED_FIELD_MESSAGE = "REQUIRED_FIELD_MESSAGE";
+    public static final String PASSWORDS_DO_NOT_MATCH_ERROR_MESSAGE = "PASSWORDS_DO_NOT_MATCH_ERROR_MESSAGE";
+    public static final String INVALID_EMAIL_ERROR_MESSAGE = "INVALID_EMAIL_ERROR_MESSAGE";
+
 
 
     public static final String BUY = "BUY";

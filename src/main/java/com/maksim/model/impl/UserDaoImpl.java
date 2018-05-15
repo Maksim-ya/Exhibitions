@@ -66,7 +66,6 @@ public class UserDaoImpl implements UserDao {
             statement.setString(1, login);
             resultSet = statement.executeQuery();
             User user = createUserFromResult(resultSet);
-            System.out.println(user);
             return  user;
         } catch (SQLException e) {
             logger.error(e.getMessage());
