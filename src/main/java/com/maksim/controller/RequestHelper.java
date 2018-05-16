@@ -7,7 +7,7 @@ import com.maksim.controller.comand.ReplenishAccountCommand;
 import com.maksim.controller.comand.exposition.ExpositionListCommand;
 import com.maksim.controller.comand.local.EnglishLocal;
 import com.maksim.controller.comand.local.RussianLocal;
-import com.maksim.controller.comand.redirect.RedirectRegistration;
+import com.maksim.controller.comand.redirect.RegistrationPage;
 import com.maksim.controller.comand.ticket.TicketPayCommand;
 import com.maksim.controller.comand.user.LoginCommand;
 import com.maksim.controller.comand.user.LogoutCommand;
@@ -48,7 +48,7 @@ public class RequestHelper {
         commands.put("localEn", new EnglishLocal());
 
 
-        commands.put("redirect", new RedirectRegistration());
+        commands.put("registrationPage", new RegistrationPage());
         commands.put("replenish an account", new ReplenishAccountCommand());
 
 

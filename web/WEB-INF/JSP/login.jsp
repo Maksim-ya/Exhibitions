@@ -44,7 +44,7 @@
 <hr/>
 
 <form action="application" method="get" >
-    <button  type="Submit" name="command" value="redirect" >Go To Registration Page</button>
+    <button  type="Submit" name="command" value="registrationPage" >Go To Registration Page</button>
 </form>
 
 
