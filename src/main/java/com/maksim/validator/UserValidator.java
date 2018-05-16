@@ -7,12 +7,12 @@ public class UserValidator {
     public static boolean checkLogin(String login) {
         User user = DaoFactoryImpl.getInstance().getUserDao().findUserByLogin(login);
         if (user!=null) {
-            return user.getLogin().equalsIgnoreCase(login) ? true : false;
+            return user.getLogin().equalsIgnoreCase(login);
         } return false;
     }
 
-    public static boolean checkPassword(String login, String confirmPassword) {
-        return login.equals(confirmPassword)? false: true;
+    public static boolean checkPassword(String password, String confirmPassword) {
+        return password.equals(confirmPassword);
     }
 
     public static boolean checkEmail(String address) {
