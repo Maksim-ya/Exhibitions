@@ -22,6 +22,8 @@ public class MessageManager {
     public static final String REQUIRED_FIELD_MESSAGE = "REQUIRED_FIELD_MESSAGE";
     public static final String PASSWORDS_DO_NOT_MATCH_ERROR_MESSAGE = "PASSWORDS_DO_NOT_MATCH_ERROR_MESSAGE";
     public static final String INVALID_EMAIL_ERROR_MESSAGE = "INVALID_EMAIL_ERROR_MESSAGE";
+    public static final String REPLENISH_AN_ACCOUNT = "REPLENISH_AN_ACCOUNT";
+    public static final String BACK_TO_BASKET = "BACK_TO_BASKET";
 
 
 

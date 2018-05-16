@@ -27,7 +27,7 @@ public class BasketCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
 
-        HttpSession se = request.getSession(true);
+        HttpSession se = request.getSession();
         User user = (User) se.getAttribute(PARAM_USER);
         List<Exposition> list = new ArrayList<>();
 
@@ -35,28 +35,27 @@ public class BasketCommand implements Command {
         int expositionAllId = expositionDao.findAllId();
         se.setAttribute(PARAM_EXPOSITION_ALL_ID, expositionAllId);
 
-        for (int i = 1; i <= expositionAllId; i++) {
-            String expositionId = request.getParameter(PARAM_EXPOSITION + i);
+        if(se.getAttribute(LIST_OF_USER_EXPOSITIONS)==null) {
+            for (int i = 1; i <= expositionAllId; i++) {
+                String expositionId = request.getParameter(PARAM_EXPOSITION + i);
 
-            if (expositionId != null) {
-                Exposition exposition = expositionDao.findById(Integer.parseInt(expositionId));
-                list.add(exposition);
+                if (expositionId != null) {
+                    Exposition exposition = expositionDao.findById(Integer.parseInt(expositionId));
+                    list.add(exposition);
 
-                se.setAttribute(PARAM_IS_EXPOSITION, "?//D");
-                se.setAttribute(PARAM_EXPOSITION+ i, exposition);
+//                se.setAttribute(PARAM_IS_EXPOSITION, "?//D");
+                    se.setAttribute(PARAM_EXPOSITION + i, exposition);
+                }
             }
+            LocalDate today = LocalDate.now();
+            se.setAttribute("today", today);
+
+            se.setAttribute("listOfUserExpositions", list);
         }
-        LocalDate today = LocalDate.now();
-        se.setAttribute("today", today);
-
-        se.setAttribute("listOfUserExpositions", list);
-
 
         if (user != null) {
 
             page = UserSession.loadUserDataToSession(request, user);
-
-
 
         } else {
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.LOGIN_PAGE_PATH);

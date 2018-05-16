@@ -4,14 +4,12 @@ import com.maksim.domain.Ticket;
 import com.maksim.domain.User;
 import com.maksim.model.dao.TicketDao;
 import com.maksim.model.impl.DaoFactoryImpl;
-import com.maksim.model.impl.TicketDaoImpl;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-import static com.maksim.controller.comand.Command.PARAM_IS_EXPOSITION;
 
 /**
  * Created by Максим on 03/May/18.
@@ -33,7 +31,7 @@ public class UserSession {
         se.setAttribute(PARAM_USERNAME, user.getFullName());
 
 
-        if (se.getAttribute(PARAM_IS_EXPOSITION) != null) {
+        if (se.getAttribute("listOfUserExpositions") != null) {
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);
         } else {
             TicketDao ticketDao= DaoFactoryImpl.getInstance().getTicketDao();

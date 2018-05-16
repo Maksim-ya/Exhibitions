@@ -3,6 +3,7 @@ package com.maksim.controller;
 import com.maksim.controller.comand.BasketCommand;
 import com.maksim.controller.comand.Command;
 import com.maksim.controller.comand.NoCommand;
+import com.maksim.controller.comand.ReplenishAccountCommand;
 import com.maksim.controller.comand.exposition.ExpositionListCommand;
 import com.maksim.controller.comand.local.EnglishLocal;
 import com.maksim.controller.comand.local.RussianLocal;
@@ -48,6 +49,7 @@ public class RequestHelper {
 
 
         commands.put("redirect", new RedirectRegistration());
+        commands.put("replenish an account", new ReplenishAccountCommand());
 
 
         commands.put("allExpositions", new ExpositionListCommand());

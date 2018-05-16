@@ -29,8 +29,6 @@ public class LoginCommand implements Command {
 //проверка логина и пароля
 
         if (user != null) {
-
-
            page= UserSession.loadUserDataToSession( request, user);
         } else {
             request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.LOGIN_ERROR_MESSAGE));

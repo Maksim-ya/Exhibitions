@@ -44,8 +44,8 @@ public class TicketPayCommand implements Command {
             ticket.setNumberOfPersons(Integer.parseInt(request.getParameter("numberOfPersons" + expositionId)));
             ticket.setEventDate(LocalDate.parse(request.getParameter("eventDate" + expositionId)));
             ticketList.add(ticket);
-            se.setAttribute(PARAM_EXPOSITION + i, null);
-            se.setAttribute(PARAM_IS_EXPOSITION, null);
+//            se.setAttribute(PARAM_EXPOSITION + i, null);
+//            se.setAttribute(PARAM_IS_EXPOSITION, null);
 
             totalPrice = totalPrice.add(DaoFactoryImpl.getInstance().getExpositionDao()
                     .findById(listOfUserExpositions.get(i).getExpositionId())
@@ -55,17 +55,17 @@ public class TicketPayCommand implements Command {
         if (user.getAccount().compareTo(totalPrice) >= 0) {
             try {
                 TicketService.getService().ticketTransaction(user, ticketList, totalPrice);
+                se.setAttribute(LIST_OF_USER_EXPOSITIONS, null);
             } catch (Exception e) {
                 e.printStackTrace();
                 request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.SERVER_ERROR_MESSAGE));
-//                    page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
+                page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
             }
-
             page = UserSession.loadUserDataToSession(request, user);
         } else {
-            request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.PAYMENT_ERROR_MESSAGE));
-//                page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
-            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);
+            request.setAttribute("paymentErrorMessage", MessageManager.getInstance().getMessage(MessageManager.PAYMENT_ERROR_MESSAGE));
+            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
+//            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);
         }
 
         return page;

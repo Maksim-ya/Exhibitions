@@ -1,6 +1,7 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setBundle basename="messages" var="messages"/>
 <html>
 <head>
     <title>Error</title>
@@ -8,12 +9,30 @@
 </head>
 <body>
 <h3>Error</h3>
-<hr/>
-<jsp:expression>
-    (request.getAttribute("errorMessage") != null)
-    ? (String) request.getAttribute("errorMessage")
-    : "unknown error"</jsp:expression>
-<hr/>
+<c:if test="${requestScope.paymentErrorMessage!=null}">
+    <h6>
+        <error>
+            <fmt:message bundle="${messages}" key="PAYMENT_ERROR_MESSAGE"/>
+        </error>
+    </h6>
+    <form action="application" method="get">
+        <button type="Submit" name="command" value="replenish an account">
+            <fmt:message bundle="${messages}" key="REPLENISH_AN_ACCOUNT"/>
+        </button>
+    </form>
+    <form action="application" method="get">
+        <button type="Submit" name="command" value="basket">
+            <fmt:message bundle="${messages}" key="BACK_TO_BASKET"/>
+        </button>
+    </form>
+</c:if>
+<c:if test="${requestScope.errorMessage!=null}">
+    <h6>
+    <error>
+    <fmt:message bundle="${messages}" key="SERVER_ERROR_MESSAGE"/>
+    </error>
+    </h6>
+</c:if>
 <a href="application">Return to login page</a>
 </body>
 </html>
