@@ -13,6 +13,7 @@
         <input type="text" name="valueOfReplenish" value=""><br/>
     </td>
     <button type="Submit" name="command" value="replenish">Replenish</button>
+
 </form>
 </body>
 </html>
