@@ -7,6 +7,7 @@ import com.maksim.controller.manager.UserSession;
 import com.maksim.domain.User;
 import com.maksim.model.impl.DaoFactoryImpl;
 import com.maksim.model.impl.UserDaoImpl;
+import com.maksim.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +25,8 @@ public class LoginCommand implements Command {
 //извлечение из запроса логина и пароля
         String login = request.getParameter(PARAM_LOGIN);
         String password = request.getParameter(PARAM_NAME_PASSWORD);
-//        User user = LoginLogic.checkLogin(login, pass);
-       User user = DaoFactoryImpl.getInstance().getUserDao().checkLoginAndPassword(login,password);
+
+        User user = UserService.getService().checkLoginAndPassword(login,password);
 //проверка логина и пароля
 
         if (user != null) {

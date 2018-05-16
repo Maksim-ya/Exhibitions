@@ -7,6 +7,7 @@ import com.maksim.domain.User;
 import com.maksim.model.dao.UserDao;
 import com.maksim.model.impl.DaoFactoryImpl;
 import com.maksim.model.impl.UserDaoImpl;
+import com.maksim.service.UserService;
 import com.maksim.validator.UserValidator;
 
 import javax.servlet.ServletException;
@@ -53,9 +54,8 @@ public class RegistrationCommand implements Command {
             user.setFullName(fullName);
             user.setAddress(address);
         }
-        UserDao userDao = DaoFactoryImpl.getInstance().getUserDao();
 
-        if (userDao.addUser(user)) {
+        if (UserService.getService().addUser(user)) {
 
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.LOGIN_PAGE_PATH);
             request.setAttribute("registrationMessage", MessageManager.getInstance().getMessage(MessageManager.SUCCESS_REGISTRATION_MESSAGE));
