@@ -2,7 +2,6 @@ package com.maksim.model.dao;
 
 import com.maksim.domain.User;
 
-import java.sql.Connection;
 import java.util.List;
 
 /**
@@ -10,7 +9,7 @@ import java.util.List;
  */
 public interface UserDao {
     boolean addUser(User user);
-    void updateUser(User user);
+    boolean updateUser(User user);
 
     void removeUser(int id);
 

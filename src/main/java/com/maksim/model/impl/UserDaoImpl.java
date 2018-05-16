@@ -3,7 +3,6 @@ package com.maksim.model.impl;
 import com.maksim.domain.User;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.UserDao;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
@@ -136,7 +135,7 @@ public class UserDaoImpl implements UserDao {
 
     }
 
-    public void updateUser(User user) {
+    public boolean updateUser(User user) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -151,10 +150,12 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setBigDecimal(5, user.getAccount());
             preparedStatement.setInt(6, user.getUserId());
             preparedStatement.executeUpdate();
+            return  true;
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
             DBConnection.close(connection, preparedStatement, resultSet);
         }
+        return  false;
     }
 }

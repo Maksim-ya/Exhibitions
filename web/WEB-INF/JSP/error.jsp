@@ -16,7 +16,7 @@
         </error>
     </h6>
     <form action="application" method="get">
-        <button type="Submit" name="command" value="replenish an account">
+        <button type="Submit" name="command" value="replenishPage">
             <fmt:message bundle="${messages}" key="REPLENISH_AN_ACCOUNT"/>
         </button>
     </form>

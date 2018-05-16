@@ -8,10 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-public class RegistrationPage implements Command {
+public class ReplenishAccountPage implements Command {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-       return  ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        return  ConfigurationManager.getInstance().getPage(ConfigurationManager.REPLENISH_AN_ACCOUNT_PAGE_PATH);
     }
 }

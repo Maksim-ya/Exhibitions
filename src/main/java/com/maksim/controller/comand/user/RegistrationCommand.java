@@ -61,7 +61,7 @@ public class RegistrationCommand implements Command {
             request.setAttribute("registrationMessage", MessageManager.getInstance().getMessage(MessageManager.SUCCESS_REGISTRATION_MESSAGE));
 
         } else {
-            request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.LOGIN_ERROR_MESSAGE));
+            request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.SERVER_ERROR_MESSAGE));
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
         }
         return page;
