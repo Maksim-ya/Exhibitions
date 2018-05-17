@@ -12,7 +12,7 @@ public class UserValidator {
     }
 
     public static boolean checkPassword(String password, String confirmPassword) {
-        return password.equals(confirmPassword);
+        return !password.equals(confirmPassword);
     }
 
     public static boolean checkEmail(String address) {

@@ -21,6 +21,7 @@ import java.io.IOException;
 public class RegistrationCommand implements Command {
     private static final String PARAM_NAME_LOGIN = "login";
     private static final String PARAM_NAME_PASSWORD = "password";
+    private static final String PARAM_NAME_CONFIRM_PASSWORD = "confirmPassword";
     private static final String PARAM_NAME_FULL_NAME = "fullName";
     private static final String PARAM_NAME_ADDRESS = "address";
 
@@ -29,7 +30,7 @@ public class RegistrationCommand implements Command {
 //извлечение из запроса логина и пароля
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String password = request.getParameter(PARAM_NAME_PASSWORD);
-        String confirmPassword = request.getParameter(PARAM_NAME_PASSWORD);
+        String confirmPassword = request.getParameter(PARAM_NAME_CONFIRM_PASSWORD);
         String fullName = request.getParameter(PARAM_NAME_FULL_NAME);
         String address = request.getParameter(PARAM_NAME_ADDRESS);
         User user = new User();

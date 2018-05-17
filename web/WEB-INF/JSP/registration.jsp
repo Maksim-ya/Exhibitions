@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:setBundle basename="messages" var="messages"/>
 
@@ -65,12 +65,6 @@
     </c:if>
     Address*:<br/>
     <input type="text" name="address" value="">
-    <br/>
-    <h6>
-        <info>
-            <fmt:message bundle="${messages}" key="REQUIRED_FIELD_MESSAGE"/>
-        </info>
-    </h6>
     <c:if test="${requestScope.invalidEmailErrorMessage!=null}">
         <h6>
             <error>
@@ -78,6 +72,12 @@
             </error>
         </h6>
     </c:if>
+    <br/>
+    <h6>
+        <info>
+            <fmt:message bundle="${messages}" key="REQUIRED_FIELD_MESSAGE"/>
+        </info>
+    </h6>
     <input type="submit" value="Enter">
 </form>
 </body>

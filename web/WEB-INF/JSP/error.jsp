@@ -26,13 +26,18 @@
         </button>
     </form>
 </c:if>
+
 <c:if test="${requestScope.errorMessage!=null}">
     <h6>
     <error>
     <fmt:message bundle="${messages}" key="SERVER_ERROR_MESSAGE"/>
     </error>
     </h6>
+    <form action="application" method="get">
+        <button type="Submit" name="command" value="registrationPage">
+            <fmt:message bundle="${messages}" key="TO_MAIN_PAGE"/>
+        </button>
+    </form>
 </c:if>
-<a href="application">Return to login page</a>
 </body>
 </html>
