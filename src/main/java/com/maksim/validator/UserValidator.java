@@ -12,10 +12,11 @@ public class UserValidator {
     }
 
     public static boolean checkPassword(String password, String confirmPassword) {
-        return !password.equals(confirmPassword);
+        return password.equals(confirmPassword);
     }
 
     public static boolean checkEmail(String address) {
-        return address.matches(("^[_A-Za-z0-9-\\+]+@[_A-Za-z0-9.-]+\\.[A-Z]{2,6}$"));
+        return address.matches("^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@[a-zA-Z]+[a-zA-Z0-9]?\\.[a-zA-Z]+$");
+//        return address.matches("^[A-Za-z0-9+_.-]+@[a-zA-Z0-9.-]+$");
     }
 }

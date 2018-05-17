@@ -57,8 +57,7 @@ public class FrontController extends HttpServlet {
             logger.error(e.getMessage());
             request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.IO_EXCEPTION_ERROR_MESSAGE));
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error(e.getMessage());
             request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.SERVER_ERROR_MESSAGE));
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);

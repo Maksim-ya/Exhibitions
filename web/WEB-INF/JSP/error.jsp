@@ -35,7 +35,7 @@
     </h6>
     <form action="application" method="get">
         <button type="Submit" name="command" value="loginPage">
-            <fmt:message bundle="${messages}" key="LOGIN_ERROR_MESSAGE"/>
+            <fmt:message bundle="${messages}" key="BACK_TO_PERSONAL_AREA"/>
         </button>
     </form>
 </c:if>

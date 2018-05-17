@@ -36,7 +36,7 @@
     </table>
     <button type="Submit" name="command" value="basket"> Buy</button>
     <button type="Submit" name="command" value="loginPage">
-        <fmt:message bundle="${messages}" key="TO_LOGIN_PAGE"/>
+        <fmt:message bundle="${messages}" key="ENTER"/>
     </button>
 </form>
 </form>

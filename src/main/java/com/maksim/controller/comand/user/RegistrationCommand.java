@@ -42,10 +42,10 @@ public class RegistrationCommand implements Command {
         if (UserValidator.checkLogin(login)) {
             request.setAttribute("loginNotUniqueErrorMessage", MessageManager.getInstance().getMessage(MessageManager.LOGIN_NOT_UNIQUE_MESSAGE));
             return ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
-        } if (UserValidator.checkPassword(password, confirmPassword)) {
+        } if (!UserValidator.checkPassword(password, confirmPassword)) {
             request.setAttribute("passwordsDoNotMatchErrorMessage", MessageManager.getInstance().getMessage(MessageManager.PASSWORDS_DO_NOT_MATCH_ERROR_MESSAGE));
             return ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
-        }if (UserValidator.checkEmail(address)) {
+        }if (!UserValidator.checkEmail(address)) {
             request.setAttribute("invalidEmailErrorMessage", MessageManager.getInstance().getMessage(MessageManager.PASSWORDS_DO_NOT_MATCH_ERROR_MESSAGE));
             return ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
         }
