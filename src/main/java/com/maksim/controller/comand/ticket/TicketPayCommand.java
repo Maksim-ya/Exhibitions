@@ -61,7 +61,7 @@ public class TicketPayCommand implements Command {
                 request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.SERVER_ERROR_MESSAGE));
                 page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
             }
-            page = UserSession.loadUserDataToSession(request, user);
+            page = UserSession.loadUserDataToSession(request);
         } else {
             request.setAttribute("paymentErrorMessage", MessageManager.getInstance().getMessage(MessageManager.PAYMENT_ERROR_MESSAGE));
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);

@@ -1,5 +1,6 @@
 package com.maksim.controller.manager;
 
+import com.maksim.domain.Exposition;
 import com.maksim.domain.Ticket;
 import com.maksim.domain.User;
 import com.maksim.model.dao.TicketDao;
@@ -23,26 +24,46 @@ public class UserSession {
     private static final String PARAM_TICKETS = "listOfTickets";
 
 
-    public static String loadUserDataToSession(HttpServletRequest request, User user) {
+    public static String loadUserDataToSession(HttpServletRequest request) {
         logger.info(Logs.LOAD_USER_TO_SESSION);
         String page;
         HttpSession se = request.getSession(true);
-        se.setAttribute(PARAM_USER, user);
-        se.setAttribute(PARAM_USERNAME, user.getFullName());
+//        se.setAttribute(PARAM_USER, user);
+//        se.setAttribute(PARAM_USERNAME, user.getFullName());
 
-
-        if (se.getAttribute("listOfUserExpositions") != null) {
-            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);
+        User user = (User) se.getAttribute(PARAM_USER);
+        if (user == null) {
+            return ConfigurationManager.getInstance().getPage(ConfigurationManager.LOGIN_PAGE_PATH);
         } else {
-            TicketDao ticketDao= DaoFactoryImpl.getInstance().getTicketDao();
-            List<Ticket> list = ticketDao.findTicketsByUser(user.getUserId());
+            if (se.getAttribute("listOfUserExpositions") != null) {
+                List<Exposition> list = (List<Exposition>) se.getAttribute("listOfUserExpositions");
+                for (int i = 0; i <list.size() ; i++) {
+                    System.out.println(list.get(i));
+                }
+                page = ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);
+            } else {
+                TicketDao ticketDao = DaoFactoryImpl.getInstance().getTicketDao();
+                List<Ticket> list = ticketDao.findTicketsByUser(user.getUserId());
 
-            request.setAttribute(PARAM_TICKETS, list);
+                request.setAttribute(PARAM_TICKETS, list);
 
-            //определение пути к main.jsp
-            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.MAIN_PAGE_PATH);
-        }
+                page = ConfigurationManager.getInstance().getPage(ConfigurationManager.MAIN_PAGE_PATH);
+            }
+
+//        if (se.getAttribute("listOfUserExpositions") != null) {
+//            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);
+//        } else {
+//            TicketDao ticketDao= DaoFactoryImpl.getInstance().getTicketDao();
+//            List<Ticket> list = ticketDao.findTicketsByUser(user.getUserId());
+//
+//            request.setAttribute(PARAM_TICKETS, list);
+//
+//            //определение пути к main.jsp
+//            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.MAIN_PAGE_PATH);
 //        }
+//        }
+//        return page;
+        }
         return page;
     }
 }

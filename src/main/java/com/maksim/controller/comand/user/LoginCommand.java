@@ -12,6 +12,7 @@ import com.maksim.service.UserService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -30,7 +31,9 @@ public class LoginCommand implements Command {
 //проверка логина и пароля
 
         if (user != null) {
-           page= UserSession.loadUserDataToSession( request, user);
+            HttpSession se = request.getSession();
+            se.setAttribute(PARAM_USER, user);
+           page= UserSession.loadUserDataToSession( request);
         } else {
             request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.LOGIN_ERROR_MESSAGE));
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.LOGIN_PAGE_PATH);

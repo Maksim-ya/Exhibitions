@@ -27,13 +27,13 @@ public class BasketCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
 
-        HttpSession se = request.getSession();
+        HttpSession se = request.getSession(true);
         User user = (User) se.getAttribute(PARAM_USER);
         List<Exposition> list = new ArrayList<>();
 
         ExpositionDao expositionDao = DaoFactoryImpl.getInstance().getExpositionDao();
         int expositionAllId = expositionDao.findAllId();
-        se.setAttribute(PARAM_EXPOSITION_ALL_ID, expositionAllId);
+//        se.setAttribute(PARAM_EXPOSITION_ALL_ID, expositionAllId);
 
         if(se.getAttribute(LIST_OF_USER_EXPOSITIONS)==null) {
             for (int i = 1; i <= expositionAllId; i++) {
@@ -50,16 +50,16 @@ public class BasketCommand implements Command {
             LocalDate today = LocalDate.now();
             se.setAttribute("today", today);
 
-            se.setAttribute("listOfUserExpositions", list);
+            se.setAttribute(LIST_OF_USER_EXPOSITIONS, list);
         }
-
-        if (user != null) {
-
-            page = UserSession.loadUserDataToSession(request, user);
-
-        } else {
-            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.LOGIN_PAGE_PATH);
-        }
-        return page;
+        return  UserSession.loadUserDataToSession(request);
+//        if (user != null) {
+//
+//            page = UserSession.loadUserDataToSession(request);
+//
+//        } else {
+//            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.LOGIN_PAGE_PATH);
+//        }
+//        return page;
     }
 }

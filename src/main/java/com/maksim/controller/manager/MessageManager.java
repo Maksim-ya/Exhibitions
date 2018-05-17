@@ -25,7 +25,7 @@ public class MessageManager {
     public static final String REPLENISH_AN_ACCOUNT = "REPLENISH_AN_ACCOUNT";
     public static final String BACK_TO_BASKET = "BACK_TO_BASKET";
     public static final String SUCCESS_REPLENISH_MESSAGE = "SUCCESS_REPLENISH_MESSAGE";
-    public static final String TO_MAIN_PAGE = "TO_MAIN_PAGE";
+    public static final String TO_LOGIN_PAGE = "TO_LOGIN_PAGE";
 
 
 

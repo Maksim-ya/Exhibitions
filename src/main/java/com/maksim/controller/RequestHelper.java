@@ -4,6 +4,7 @@ import com.maksim.controller.comand.BasketCommand;
 import com.maksim.controller.comand.Command;
 import com.maksim.controller.comand.NoCommand;
 import com.maksim.controller.comand.ReplenishAccount;
+import com.maksim.controller.comand.redirect.LoginPage;
 import com.maksim.controller.comand.redirect.ReplenishAccountPage;
 import com.maksim.controller.comand.exposition.ExpositionListCommand;
 import com.maksim.controller.comand.local.EnglishLocal;
@@ -50,6 +51,7 @@ public class RequestHelper {
 
 
         commands.put("registrationPage", new RegistrationPage());
+        commands.put("loginPage", new LoginPage());
         commands.put("replenishPage", new ReplenishAccountPage());
 
 

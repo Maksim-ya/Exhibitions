@@ -34,8 +34,8 @@
     </error>
     </h6>
     <form action="application" method="get">
-        <button type="Submit" name="command" value="registrationPage">
-            <fmt:message bundle="${messages}" key="TO_MAIN_PAGE"/>
+        <button type="Submit" name="command" value="loginPage">
+            <fmt:message bundle="${messages}" key="LOGIN_ERROR_MESSAGE"/>
         </button>
     </form>
 </c:if>
