@@ -19,6 +19,7 @@ public class ConfigurationManager {
     public static final String ALL_TOPICS_PAGE_PATH = "ALL_TOPICS_PAGE_PATH";
     public static final String BUY_PAGE_PATH = "BUY_PAGE_PATH";
     public static final String INDEX_PAGE_PATH = "INDEX_PAGE_PATH";
+    public static final String NO_MONEY_PAGE_PATH = "NO_MONEY_PAGE_PATH";
     public static final String REPLENISH_AN_ACCOUNT_PAGE_PATH = "REPLENISH_AN_ACCOUNT_PAGE_PATH";
 
 

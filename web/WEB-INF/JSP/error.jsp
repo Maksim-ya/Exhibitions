@@ -9,23 +9,23 @@
 </head>
 <body>
 <h3>Error</h3>
-<c:if test="${requestScope.paymentErrorMessage!=null}">
-    <h6>
-        <error>
-            <fmt:message bundle="${messages}" key="PAYMENT_ERROR_MESSAGE"/>
-        </error>
-    </h6>
-    <form action="application" method="get">
-        <button type="Submit" name="command" value="replenishPage">
-            <fmt:message bundle="${messages}" key="REPLENISH_AN_ACCOUNT"/>
-        </button>
-    </form>
-    <form action="application" method="get">
-        <button type="Submit" name="command" value="basket">
-            <fmt:message bundle="${messages}" key="BACK_TO_BASKET"/>
-        </button>
-    </form>
-</c:if>
+<%--<c:if test="${requestScope.paymentErrorMessage!=null}">--%>
+    <%--<h6>--%>
+        <%--<error>--%>
+            <%--<fmt:message bundle="${messages}" key="PAYMENT_ERROR_MESSAGE"/>--%>
+        <%--</error>--%>
+    <%--</h6>--%>
+    <%--<form action="application" method="get">--%>
+        <%--<button type="Submit" name="command" value="replenishPage">--%>
+            <%--<fmt:message bundle="${messages}" key="REPLENISH_AN_ACCOUNT"/>--%>
+        <%--</button>--%>
+    <%--</form>--%>
+    <%--<form action="application" method="get">--%>
+        <%--<button type="Submit" name="command" value="basket">--%>
+            <%--<fmt:message bundle="${messages}" key="BACK_TO_BASKET"/>--%>
+        <%--</button>--%>
+    <%--</form>--%>
+<%--</c:if>--%>
 
 <c:if test="${requestScope.errorMessage!=null}">
     <h6>
