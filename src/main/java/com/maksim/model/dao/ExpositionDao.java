@@ -13,4 +13,8 @@ public interface ExpositionDao {
     Exposition findById(int id);
     Exposition findByTitle(String title);
     boolean addExposition(Exposition exposition);
+
+    List<String> findAllTopics();
+
+    List<Exposition> findAllByTopic(String topic);
 }

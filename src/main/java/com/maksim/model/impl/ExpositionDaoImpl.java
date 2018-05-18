@@ -95,6 +95,45 @@ public class ExpositionDaoImpl implements ExpositionDao {
         return false;
     }
 
+    @Override
+    public List<String> findAllTopics() {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(
+                    "SELECT DISTINCT topic FROM expositions");
+            resultSet = statement.executeQuery();
+            return resultToStringList(resultSet);
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        } finally {
+            DBConnection.close(connection, statement, resultSet);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Exposition> findAllByTopic(String topic) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(
+                    "SELECT * FROM expositions WHERE topic=?");
+            statement.setString(1,topic);
+            resultSet = statement.executeQuery();
+            return resultToList(resultSet);
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        } finally {
+            DBConnection.close(connection, statement, resultSet);
+        }
+        return null;
+    }
+
 
     private Integer createIdFromResult(ResultSet resultSet) throws SQLException {
         if (resultSet.isBeforeFirst()) resultSet.last();
@@ -110,6 +149,21 @@ public class ExpositionDaoImpl implements ExpositionDao {
         }
         return list;
     }
+    private List<String> resultToStringList(ResultSet resultSet) throws SQLException {
+        List<String> list = new ArrayList<String>();
+        while (resultSet.next()) {
+            String topic = createTopicFromResult(resultSet);
+            list.add(topic);
+        }
+        return list;
+    }
+    private String createTopicFromResult(ResultSet resultSet) throws SQLException {
+        if (resultSet.isBeforeFirst()) resultSet.next();
+        String expositionTopic = resultSet.getString(1);
+
+        return expositionTopic;
+    }
+
     private Exposition createExpositionFromResult(ResultSet resultSet) throws SQLException {
         if (resultSet.isBeforeFirst()) resultSet.next();
 

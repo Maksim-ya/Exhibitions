@@ -1,4 +1,4 @@
-package com.maksim.controller.comand.exposition;
+package com.maksim.controller.comand.topic;
 
 import com.maksim.controller.comand.Command;
 import com.maksim.controller.manager.ConfigurationManager;
@@ -12,21 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by Максим on 03/May/18.
- */
-public class ExpositionListCommand implements Command {
+public class TopicListCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
         ExpositionDao expositionDao = DaoFactoryImpl.getInstance().getExpositionDao();
-        String topic = request.getParameter("topic");
-        System.out.println(topic);
-        List<Exposition> list =  expositionDao.findAllByTopic(topic);
+        List<String> list = expositionDao.findAllTopics();
 
-        request.setAttribute("listOfExpositions", list);
+        request.setAttribute("listOfTopics", list);
 
-        page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ALL_EXPOSITIONS_PAGE_PATH);
+        page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ALL_TOPICS_PAGE_PATH);
 
         return page;
     }

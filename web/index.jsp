@@ -11,7 +11,7 @@
 <body>
 
 <form action="application" method="get">
-  <button type="Submit" name="command" value="allExpositions">
+  <button type="Submit" name="command" value="allTopics">
     <fmt:message bundle="${messages}" key="VIEW_ALL_TOPICS"/>
   </button>
 </form>

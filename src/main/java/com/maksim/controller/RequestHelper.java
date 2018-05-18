@@ -11,6 +11,7 @@ import com.maksim.controller.comand.local.EnglishLocal;
 import com.maksim.controller.comand.local.RussianLocal;
 import com.maksim.controller.comand.redirect.RegistrationPage;
 import com.maksim.controller.comand.ticket.TicketPayCommand;
+import com.maksim.controller.comand.topic.TopicListCommand;
 import com.maksim.controller.comand.user.LoginCommand;
 import com.maksim.controller.comand.user.LogoutCommand;
 import com.maksim.controller.comand.user.RegistrationCommand;
@@ -59,6 +60,7 @@ public class RequestHelper {
 
 
         commands.put("allExpositions", new ExpositionListCommand());
+        commands.put("allTopics", new TopicListCommand());
 
         commands.put("basket", new BasketCommand());
 
