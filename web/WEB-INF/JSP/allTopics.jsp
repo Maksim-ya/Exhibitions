@@ -14,13 +14,11 @@
 
         <c:forEach items="${listOfTopics}" var="topic">
             <tr>
-                    <button type="Submit" name="command" value="allExpositions" name=topic>
-                        <input  type="hidden" name="topic" value ="${topic}"  /> ${topic}
+                    <button type="Submit" name="topic" value ="${topic}" >
+                        <input  type="hidden" name="command" value="allExpositions"  /> ${topic}
                     </button>
             </tr>
         </c:forEach>
-
-
 </form>
 </body>
 </html>
