@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>List of Expositions</h1>
-<form action="application" method="get">
+<form action="exhibitions" method="get">
     <table class="tg">
         <tr>
             <th width="120"></th>

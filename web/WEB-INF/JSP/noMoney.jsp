@@ -15,12 +15,12 @@
     <fmt:message bundle="${messages}" key="PAYMENT_ERROR_MESSAGE"/>
 </error>
 <hr/>
-<form action="application" method="get">
+<form action="exhibitions" method="get">
     <button type="Submit" name="command" value="replenishPage">
         <fmt:message bundle="${messages}" key="REPLENISH_AN_ACCOUNT"/>
     </button>
 </form>
-<form action="application" method="get">
+<form action="exhibitions" method="get">
     <button type="Submit" name="command" value="basket">
         <fmt:message bundle="${messages}" key="BACK_TO_BASKET"/>
     </button>

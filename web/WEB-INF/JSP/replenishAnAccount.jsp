@@ -8,7 +8,7 @@
 </head>
 <body>
 <h4>Enter number of replenishment</h4>
-<form action="application" method="post">
+<form action="exhibitions" method="post">
     <td align="center">
         <input type="text" name="valueOfReplenish" value=""><br/>
     </td>

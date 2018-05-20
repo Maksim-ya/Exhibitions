@@ -10,18 +10,18 @@
 </head>
 <body>
 
-<form action="application" method="get">
+<form action="exhibitions" method="get">
   <button type="Submit" name="command" value="allTopics">
     <fmt:message bundle="${messages}" key="VIEW_ALL_TOPICS"/>
   </button>
 </form>
 
-<form action="application" method="get">
+<form action="exhibitions" method="get">
 <button type="Submit" name="command" value="localRu">
     RU
   </button>
 </form>
-<form action="application" method="get">
+<form action="exhibitions" method="get">
   <button type="Submit" name="command" value="localEn">
     EN
   </button>

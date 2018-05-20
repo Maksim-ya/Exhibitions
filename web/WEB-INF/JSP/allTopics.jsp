@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>List of All Topics</h1>
-<form action="application" method="get">
+<form action="exhibitions" method="get">
 
         <c:forEach items="${listOfTopics}" var="topic">
             <tr>

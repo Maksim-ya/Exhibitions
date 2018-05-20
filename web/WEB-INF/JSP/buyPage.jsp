@@ -24,7 +24,7 @@
         <th width="200">Number of Tickets</th>
 
     </tr>
-    <form action="application" method="post">
+    <form action="exhibitions" method="post">
 
         <c:forEach items="${listOfUserExpositions}" var="exposition">
         <tr>

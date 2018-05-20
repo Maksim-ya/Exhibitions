@@ -26,7 +26,7 @@
     </c:forEach>
 </table>
 
-<form action="application">
+<form action="exhibitions">
     <input type="hidden" name="command" value="logout" />
     <br/>
     <input type="submit" value="Logout">

@@ -25,7 +25,7 @@
 </c:if>
 <hr/>
 <body><h3>Login</h3>
-<form name="loginForm" method="POST" action="application">
+<form name="loginForm" method="POST" action="exhibitions">
     <input type="hidden" name="command" value="login"/>
     Login:<br/>
     <input type="text" name="login" ><br/>
@@ -43,7 +43,7 @@
 </form>
 <hr/>
 
-<form action="application" method="get" >
+<form action="exhibitions" method="get" >
     <button  type="Submit" name="command" value="registrationPage" >Go To Registration Page</button>
 </form>
 

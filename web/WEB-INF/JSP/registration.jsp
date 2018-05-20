@@ -10,7 +10,7 @@
     <title>Registration</title>
 </head>
 <body>
-<form name="registrationForm" method="POST" action="application">
+<form name="registrationForm" method="POST" action="exhibitions">
     <input type="hidden" name="command" value="registration"/>
     <h2>Registration:</h2><br/>
     Login*:<br/>
