@@ -33,11 +33,11 @@ public class UserDaoImpl implements UserDao {
         try {
             connection =  DBConnection.getConnection();
             preparedStatement = connection.prepareStatement(
-                    "INSERT INTO users (login, password,fullName, address) VALUES (?,?,?,?)");
+                    "INSERT INTO users (login, password,fullName, email) VALUES (?,?,?,?)");
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getFullName());
-            preparedStatement.setString(4, user.getAddress());
+            preparedStatement.setString(4, user.getEmail());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -129,9 +129,9 @@ public class UserDaoImpl implements UserDao {
         String login = resultSet.getString(2);
         String password = resultSet.getString(3);
         String fullName = resultSet.getString(4);
-        String address = resultSet.getString(5);
+        String email = resultSet.getString(5);
         BigDecimal account = resultSet.getBigDecimal(6);
-        return new User(userId, login, password, fullName, address, account);
+        return new User(userId, login, password, fullName, email, account);
 
     }
 
@@ -142,11 +142,11 @@ public class UserDaoImpl implements UserDao {
         try {
             connection = DBConnection.getConnection();
             preparedStatement = connection.prepareStatement(
-                    "UPDATE USERS  SET LOGIN = ?, PASSWORD = ?, FULLNAME = ?, ADDRESS = ?, ACCOUNT= ? WHERE USERID = ? ");
+                    "UPDATE USERS  SET LOGIN = ?, PASSWORD = ?, FULLNAME = ?, EMAIL = ?, ACCOUNT= ? WHERE USERID = ? ");
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getFullName());
-            preparedStatement.setString(4, user.getAddress());
+            preparedStatement.setString(4, user.getEmail());
             preparedStatement.setBigDecimal(5, user.getAccount());
             preparedStatement.setInt(6, user.getUserId());
             preparedStatement.executeUpdate();

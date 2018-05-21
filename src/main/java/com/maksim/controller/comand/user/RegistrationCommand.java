@@ -23,7 +23,7 @@ public class RegistrationCommand implements Command {
     private static final String PARAM_NAME_PASSWORD = "password";
     private static final String PARAM_NAME_CONFIRM_PASSWORD = "confirmPassword";
     private static final String PARAM_NAME_FULL_NAME = "fullName";
-    private static final String PARAM_NAME_ADDRESS = "address";
+    private static final String PARAM_NAME_EMAIL = "email";
 
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
@@ -32,10 +32,10 @@ public class RegistrationCommand implements Command {
         String password = request.getParameter(PARAM_NAME_PASSWORD);
         String confirmPassword = request.getParameter(PARAM_NAME_CONFIRM_PASSWORD);
         String fullName = request.getParameter(PARAM_NAME_FULL_NAME);
-        String address = request.getParameter(PARAM_NAME_ADDRESS);
+        String email = request.getParameter(PARAM_NAME_EMAIL);
         User user = new User();
 
-        if(login.equals("")||password.equals("")||confirmPassword.equals("")||fullName.equals("")||address.equals("")){
+        if(login.equals("")||password.equals("")||confirmPassword.equals("")||fullName.equals("")||email.equals("")){
             request.setAttribute("requiredFieldMessage", MessageManager.getInstance().getMessage(MessageManager.REQUIRED_FIELD_MESSAGE));
             return ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
         }
@@ -45,7 +45,7 @@ public class RegistrationCommand implements Command {
         } if (!UserValidator.checkPassword(password, confirmPassword)) {
             request.setAttribute("passwordsDoNotMatchErrorMessage", MessageManager.getInstance().getMessage(MessageManager.PASSWORDS_DO_NOT_MATCH_ERROR_MESSAGE));
             return ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
-        }if (!UserValidator.checkEmail(address)) {
+        }if (!UserValidator.checkEmail(email)) {
             request.setAttribute("invalidEmailErrorMessage", MessageManager.getInstance().getMessage(MessageManager.PASSWORDS_DO_NOT_MATCH_ERROR_MESSAGE));
             return ConfigurationManager.getInstance().getPage(ConfigurationManager.REGISTRATION_PAGE_PATH);
         }
@@ -53,7 +53,7 @@ public class RegistrationCommand implements Command {
             user.setLogin(login);
             user.setPassword(password);
             user.setFullName(fullName);
-            user.setAddress(address);
+            user.setEmail(email);
         }
 
         if (UserService.getService().addUser(user)) {

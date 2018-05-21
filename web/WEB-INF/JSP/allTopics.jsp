@@ -12,13 +12,13 @@
 <h1>List of All Topics</h1>
 <form action="exhibitions" method="get">
 
-        <c:forEach items="${listOfTopics}" var="topic">
-            <tr>
-                    <button type="Submit" name="topic" value ="${topic}" >
-                        <input  type="hidden" name="command" value="allExpositions"  /> ${topic}
-                    </button>
-            </tr>
-        </c:forEach>
+    <c:forEach items="${listOfTopics}" var="topic">
+        <tr>
+            <button type="Submit" name="topic" value ="${topic}" >
+                <input  type="hidden" name="command" value="allExpositions"  /> ${topic}
+            </button>
+        </tr>
+    </c:forEach>
 </form>
 </body>
 </html>

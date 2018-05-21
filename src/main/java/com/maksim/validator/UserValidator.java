@@ -15,8 +15,7 @@ public class UserValidator {
         return password.equals(confirmPassword);
     }
 
-    public static boolean checkEmail(String address) {
-        return address.matches("^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@[a-zA-Z]+[a-zA-Z0-9]?[\\.a-zA-Z]+$");
-//        return address.matches("^[A-Za-z0-9+_.-]+@[a-zA-Z0-9.-]+$");
+    public static boolean checkEmail(String email) {
+        return email.matches("^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@[a-zA-Z]+[a-zA-Z0-9]?[\\.a-zA-Z]+$");
     }
 }

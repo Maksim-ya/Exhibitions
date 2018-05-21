@@ -63,8 +63,8 @@
             </error>
         </h6>
     </c:if>
-    Address*:<br/>
-    <input type="text" name="address" value="">
+    Email*:<br/>
+    <input type="text" name="email" value="">
     <c:if test="${requestScope.invalidEmailErrorMessage!=null}">
         <h6>
             <error>

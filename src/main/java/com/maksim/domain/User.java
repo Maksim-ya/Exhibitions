@@ -8,18 +8,18 @@ public class User {
     private String login;
     private String password;
     private String fullName;
-    private String address;
+    private String email;
     private BigDecimal account;
 
     public User() {
     }
 
-    public User(int userId, String login, String password, String fullName, String address, BigDecimal account) {
+    public User(int userId, String login, String password, String fullName, String email, BigDecimal account) {
         this.userId = userId;
         this.login = login;
         this.password = password;
         this.fullName = fullName;
-        this.address = address;
+        this.email = email;
         this.account = account;
     }
 
@@ -34,7 +34,7 @@ public class User {
         if (login != null ? !login.equals(user.login) : user.login != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (fullName != null ? !fullName.equals(user.fullName) : user.fullName != null) return false;
-        if (address != null ? !address.equals(user.address) : user.address != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
         return account != null ? account.equals(user.account) : user.account == null;
 
     }
@@ -45,7 +45,7 @@ public class User {
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (fullName != null ? fullName.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (account != null ? account.hashCode() : 0);
         return result;
     }
@@ -82,12 +82,12 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email =email;
     }
 
     public BigDecimal getAccount() {
@@ -105,7 +105,7 @@ public class User {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' +
-                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
                 ", account=" + account +
                 '}';
     }
