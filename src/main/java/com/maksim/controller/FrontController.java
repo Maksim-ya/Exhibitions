@@ -39,7 +39,7 @@ public class FrontController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String page = null;
+        String page ;
         try {
 //определение команды, пришедшей из JSP
             Command command = requestHelper.getCommand(request);
@@ -47,19 +47,8 @@ public class FrontController extends HttpServlet {
 параметров классу-обработчику конкретной команды*/
             page = command.execute(request, response);
 // метод возвращает страницу ответа
-        } catch (ServletException e) {
+        }catch (Exception e) {
             logger.error(e.getMessage());
-//генерация сообщения об ошибке
-            request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.SERVLET_EXCEPTION_ERROR_MESSAGE));
-//вызов JSP-страницы c cообщением об ошибке
-            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-            request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.IO_EXCEPTION_ERROR_MESSAGE));
-            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-            request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.SERVER_ERROR_MESSAGE));
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
         }
 //вызов страницы ответа на запрос

@@ -10,17 +10,10 @@
 </head>
 <body>
 <h3>Error</h3>
-<c:if test="${requestScope.errorMessage!=null}">
-    <h6>
-    <error>
-    <fmt:message bundle="${messages}" key="SERVER_ERROR_MESSAGE"/>
-    </error>
-    </h6>
     <form action="exhibitions" method="get">
         <button type="Submit" name="command" value="loginPage">
             <fmt:message bundle="${messages}" key="BACK_TO_PERSONAL_AREA"/>
         </button>
     </form>
-</c:if>
 </body>
 </html>
