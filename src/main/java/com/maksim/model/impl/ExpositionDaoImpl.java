@@ -35,7 +35,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
         try {
             connection = DBConnection.getConnection();
             preparedStatement = connection.prepareStatement(
-                    "SELECT expositionId FROM expositions");
+                    "SELECT max(expositionId) FROM expositions");
             resultSet = preparedStatement.executeQuery();
             return createIdFromResult(resultSet);
         } catch (SQLException e) {

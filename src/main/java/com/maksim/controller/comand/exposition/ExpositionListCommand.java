@@ -21,7 +21,6 @@ public class ExpositionListCommand implements Command {
         String page;
         ExpositionDao expositionDao = DaoFactoryImpl.getInstance().getExpositionDao();
         String topic = request.getParameter("topic");
-        System.out.println(topic);
         List<Exposition> list =  expositionDao.findAllByTopic(topic);
 
         request.setAttribute("listOfExpositions", list);
