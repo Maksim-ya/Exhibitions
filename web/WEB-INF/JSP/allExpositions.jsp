@@ -5,20 +5,20 @@
 <html>
 <head>
     <title>Expositions Page</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 <body>
-<h1>List of Expositions</h1>
-<form action="exhibitions" method="get">
+<h1><fmt:message bundle="${messages}" key="LIST_OF_EXPOSITIONS"/></h1>
+<form action="exhibitions" method="post">
     <table class="tg">
         <tr>
-            <th width="120"></th>
-            <th width="120">Title</th>
-            <th width="120">Price</th>
-            <th width="200">Showroom</th>
-            <th width="200">Start Date</th>
-            <th width="200">Finish Date</th>
+            <th width="100"></th>
+            <th width="120"><fmt:message bundle="${messages}" key="TITLE"/></th>
+            <th width="120"><fmt:message bundle="${messages}" key="PRICE"/></th>
+            <th width="200"><fmt:message bundle="${messages}" key="SHOWROOM"/></th>
+            <th width="200"><fmt:message bundle="${messages}" key="START_DATE"/></th>
+            <th width="200"><fmt:message bundle="${messages}" key="FINISH_DATE"/></th>
         </tr>
         <c:forEach items="${listOfExpositions}" var="exposition">
             <tr>
@@ -34,11 +34,9 @@
             </tr>
         </c:forEach>
     </table>
-    <button type="Submit" name="command" value="basket"> Buy</button>
-    <button type="Submit" name="command" value="loginPage">
-        <fmt:message bundle="${messages}" key="ENTER"/>
+    <button type="Submit" name="command" value="basket">
+        <fmt:message bundle="${messages}" key="BUY"/>
     </button>
-</form>
 </form>
 </body>
 </html>

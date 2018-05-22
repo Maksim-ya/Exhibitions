@@ -26,7 +26,26 @@ public class MessageManager {
     public static final String BACK_TO_BASKET = "BACK_TO_BASKET";
     public static final String BACK_TO_PERSONAL_AREA = "BACK_TO_PERSONAL_AREA";
     public static final String SUCCESS_REPLENISH_MESSAGE = "SUCCESS_REPLENISH_MESSAGE";
+    public static final String LIST_OF_ALL_TOPICS = "LIST_OF_ALL_TOPICS";
     public static final String ENTER = "ENTER";
+    public static final String TITLE = "TITLE";
+    public static final String PRICE = "PRICE";
+    public static final String SHOWROOM = "SHOWROOM";
+    public static final String START_DATE = "START_DATE";
+    public static final String FINISH_DATE = "FINISH_DATE";
+    public static final String LIST_OF_EXPOSITIONS = "LIST_OF_EXPOSITIONS";
+    public static final String LOGIN = "LOGIN";
+    public static final String PASSWORD = "PASSWORD";
+    public static final String REGISTRATION = "REGISTRATION";
+    public static final String CONFIRM_PASSWORD = "CONFIRM_PASSWORD";
+    public static final String FULL_NAME = "FULL_NAME";
+    public static final String EMAIL = "EMAIL";
+    public static final String LIST_OF_YOUR_TICKETS = "LIST_OF_YOUR_TICKETS";
+    public static final String LOGOUT = "LOGOUT";
+    public static final String DATE = "DATE";
+    public static final String SELECT_DATE_AND_NUMBER = "SELECT_DATE_AND_NUMBER";
+    public static final String NUMBER_OF_TICKETS = "NUMBER_OF_TICKETS";
+
 
 
 

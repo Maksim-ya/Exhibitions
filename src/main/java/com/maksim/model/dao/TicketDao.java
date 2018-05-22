@@ -9,6 +9,6 @@ import java.util.List;
  * Created by Максим on 03/May/18.
  */
 public interface TicketDao {
-    List<Ticket> findTicketsByUser(int userId);
+    List<Ticket> findTicketsByUserByEventDate(int userId);
     boolean addTicket(Ticket ticket);
 }

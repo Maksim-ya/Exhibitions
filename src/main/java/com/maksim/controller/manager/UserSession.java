@@ -43,7 +43,7 @@ public class UserSession {
                 page = ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);
             } else {
                 TicketDao ticketDao = DaoFactoryImpl.getInstance().getTicketDao();
-                List<Ticket> list = ticketDao.findTicketsByUser(user.getUserId());
+                List<Ticket> list = ticketDao.findTicketsByUserByEventDate(user.getUserId());
 
                 request.setAttribute(PARAM_TICKETS, list);
 

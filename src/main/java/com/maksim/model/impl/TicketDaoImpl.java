@@ -28,14 +28,14 @@ public class TicketDaoImpl implements TicketDao {
     }
 
     @Override
-    public List<Ticket> findTicketsByUser(int userId) {
+    public List<Ticket> findTicketsByUserByEventDate(int userId) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(
-                    "SELECT * FROM tickets WHERE userId = ?");
+                    "SELECT * FROM tickets WHERE userId = ? ORDER BY eventDate");
             statement.setInt(1, userId);
             resultSet = statement.executeQuery();
             List<Ticket> list =  resultToList(resultSet);

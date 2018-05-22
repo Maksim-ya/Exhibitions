@@ -1,27 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:setBundle basename="messages" var="messages"/>
 <html>
 <head>
     <title>BuyPage</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
-
 <body>
-
-<hr/>
-<h3>Buy now</h3>
-<hr/>
-<c:out value="${name}, buy!"/>
-<hr/>
+<h3><fmt:message bundle="${messages}" key="SELECT_DATE_AND_NUMBER"/></h3>
 <table class="tg">
     <tr>
-        <th width="120">Title</th>
-        <th width="120">Price</th>
-        <th width="120">Showroom</th>
-        <th width="200">Event Date</th>
-        <th width="200">Number of Tickets</th>
+        <th width="120"><fmt:message bundle="${messages}" key="TITLE"/></th>
+        <th width="120"><fmt:message bundle="${messages}" key="PRICE"/></th>
+        <th width="120"><fmt:message bundle="${messages}" key="SHOWROOM"/></th>
+        <th width="200"><fmt:message bundle="${messages}" key="DATE"/></th>
+        <th width="200"><fmt:message bundle="${messages}" key="NUMBER_OF_TICKETS"/></th>
 
     </tr>
     <form action="exhibitions" method="post">
@@ -36,32 +31,17 @@
                        max="${exposition.finishDate}"
                        min="${today}">
             </td>
-            <td align="center">
-                <input type="text" name="numberOfPersons${exposition.expositionId}" size=2 value="1" ><br/>
+            <td>
+                <input type="text" name="numberOfPersons${exposition.expositionId}" size=2 value="1"><br/>
 
             </td>
         </tr>
         </c:forEach>
 
 </table>
-<c:if test="${requestScope.paymentErrorMessage!=null}">
-    <h6>
-        <error>
-            <fmt:message bundle="${messages}" key="PAYMENT_ERROR_MESSAGE"/>
-        </error>
-    </h6>
-    <form action="exhibitions" method="get">
-        <button type="Submit" name="command" value="replenish an account">
-            <fmt:message bundle="${messages}" key="REPLENISH_AN_ACCOUNT"/>
-        </button>
-    </form>
-    <form action="exhibitions" method="get">
-        <button type="Submit" name="command" value="basket">
-            <fmt:message bundle="${messages}" key="BACK_TO_BASKET"/>
-        </button>
-    </form>
-</c:if>
-<button type="Submit" name="command" value="payment">Buy now</button>
+<button type="Submit" name="command" value="payment">
+    <fmt:message bundle="${messages}" key="BUY"/>
+</button>
 </form>
 </body>
 </html>
