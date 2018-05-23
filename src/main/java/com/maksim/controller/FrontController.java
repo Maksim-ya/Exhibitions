@@ -19,7 +19,6 @@ import java.io.IOException;
 public class FrontController extends HttpServlet {
     private static final Logger logger = Logger.getLogger(FrontController.class);
 
-    //объект, содержащий список возможных команд
     RequestHelper requestHelper = RequestHelper.getInstance();
 
     public FrontController() {
@@ -41,17 +40,14 @@ public class FrontController extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page ;
         try {
-//определение команды, пришедшей из JSP
             Command command = requestHelper.getCommand(request);
-/*вызов реализованного метода execute() интерфейса Command и передача
-параметров классу-обработчику конкретной команды*/
+
             page = command.execute(request, response);
-// метод возвращает страницу ответа
+
         }catch (Exception e) {
             logger.error(e.getMessage());
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
         }
-//вызов страницы ответа на запрос
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
         logger.info(Logs.REDIRECT_TO + page);
         dispatcher.forward(request, response);

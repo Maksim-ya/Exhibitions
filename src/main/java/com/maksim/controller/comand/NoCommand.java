@@ -13,10 +13,7 @@ import java.io.IOException;
 public class NoCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       /*в случае прямого обращения к контроллеру переадресация на страницу ввода
-логина*/
         String page = ConfigurationManager.getInstance().getPage(ConfigurationManager.LOGIN_PAGE_PATH);
-
         return page;
     }
 }

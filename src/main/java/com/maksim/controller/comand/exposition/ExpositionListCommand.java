@@ -23,13 +23,9 @@ public class ExpositionListCommand implements Command {
         ExpositionDao expositionDao = DaoFactoryImpl.getInstance().getExpositionDao();
         String topic = request.getParameter("topic");
         List<Exposition> listOfExpositions =  expositionDao.findAllByTopic(topic);
-
-//        request.setAttribute("listOfExpositions", listOfExpositions);
         HttpSession se = request.getSession(true);
         se.setAttribute("listOfExpositions", listOfExpositions);
-
         page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ALL_EXPOSITIONS_PAGE_PATH);
-
         return page;
     }
 }

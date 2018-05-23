@@ -24,7 +24,6 @@ public class RegistrationCommand implements Command {
 
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
-//извлечение из запроса логина и пароля
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String password = request.getParameter(PARAM_NAME_PASSWORD);
         String confirmPassword = request.getParameter(PARAM_NAME_CONFIRM_PASSWORD);

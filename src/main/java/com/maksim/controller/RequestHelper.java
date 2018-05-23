@@ -30,7 +30,6 @@ public class RequestHelper {
 
     private static RequestHelper instance = null;
 
-    //создание единственного объекта по шаблону Singleton
     public static RequestHelper getInstance() {
 
         if (instance == null) {
@@ -42,40 +41,26 @@ public class RequestHelper {
     HashMap<String, Command> commands = new HashMap<String, Command>();
 
     private RequestHelper() {
-        //заполнение таблицы командами
         commands.put("login", new LoginCommand());
         commands.put("logout", new LogoutCommand());
         commands.put("registration", new RegistrationCommand());
-
         commands.put("localRu", new RussianLocal());
         commands.put("localEn", new EnglishLocal());
-
-
         commands.put("registrationPage", new RegistrationPage());
         commands.put("loginPage", new LoginPage());
         commands.put("replenishPage", new ReplenishAccountPage());
-
-
         commands.put("replenish", new ReplenishAccount());
-
-
         commands.put("allExpositions", new ExpositionListCommand());
         commands.put("allTopics", new TopicListCommand());
-
         commands.put("basket", new BasketCommand());
-
-
         commands.put("payment", new TicketPayCommand());
     }
 
     public Command getCommand(HttpServletRequest request) {
-//извлечение команды из запроса
         String action = request.getParameter("command");
-//получение объекта, соответствующего команде
         Command command = commands.get(action);
         logger.info(Logs.CALLED_COMMAND+command.getClass().getName());
         if (command == null) {
-//если команды не существует в текущем объекте
             command = new NoCommand();
         }
         return command;

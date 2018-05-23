@@ -30,12 +30,10 @@ public class TicketPayCommand implements Command {
         String page;
         HttpSession se = request.getSession(true);
         User user = (User) se.getAttribute(PARAM_USER);
-//        int expositionAllId = (Integer) se.getAttribute(PARAM_EXPOSITION_ALL_ID);
         List<Exposition> listOfUserExpositions = (List<Exposition>) se.getAttribute("listOfUserExpositions");
         BigDecimal totalPrice = new BigDecimal("0.0");
 
         List<Ticket> ticketList = new ArrayList<Ticket>();
-//        Ticket ticket = new Ticket();
         for (int i = 0; i < listOfUserExpositions.size(); i++) {
             Ticket ticket = new Ticket();
             ticket.setUser(user);
@@ -46,9 +44,6 @@ public class TicketPayCommand implements Command {
                 ticket.setNumberOfPersons(numberOfPersons);
                 ticket.setEventDate(LocalDate.parse(request.getParameter("eventDate" + expositionId)));
                 ticketList.add(ticket);
-//            se.setAttribute(PARAM_EXPOSITION + i, null);
-//            se.setAttribute(PARAM_IS_EXPOSITION, null);
-
                 totalPrice = totalPrice.add(DaoFactoryImpl.getInstance().getExpositionDao()
                         .findById(listOfUserExpositions.get(i).getExpositionId())
                         .getPrice().multiply(BigDecimal.valueOf(ticket.getNumberOfPersons())));
@@ -66,12 +61,11 @@ public class TicketPayCommand implements Command {
             } catch (Exception e) {
                 e.printStackTrace();
                 request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.SERVER_ERROR_MESSAGE));
-                page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
+                 ConfigurationManager.getInstance().getPage(ConfigurationManager.ERROR_PAGE_PATH);
             }
             page = UserSession.loadUserDataToSession(request);
         } else {
             page = ConfigurationManager.getInstance().getPage(ConfigurationManager.NO_MONEY_PAGE_PATH);
-//            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);
         }
 
         return page;

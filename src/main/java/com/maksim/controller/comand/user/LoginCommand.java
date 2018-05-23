@@ -21,12 +21,10 @@ public class LoginCommand implements Command {
 
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
-//извлечение из запроса логина и пароля
         String login = request.getParameter(PARAM_LOGIN);
         String password = request.getParameter(PARAM_NAME_PASSWORD);
 
         User user = UserService.getService().checkLoginAndPassword(login,password);
-//проверка логина и пароля
 
         if (user != null) {
             HttpSession se = request.getSession();

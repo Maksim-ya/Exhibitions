@@ -2,13 +2,10 @@ package com.maksim.controller.manager;
 
 import java.util.ResourceBundle;
 
-/**
- * Created by Максим on 03/May/18.
- */
+
 public class ConfigurationManager {
     private static ConfigurationManager instance;
     private ResourceBundle resourceBundle;
-    //    класс извлекает информацию из файла pages.properties
     private static final String BUNDLE_NAME = "pages";
 
     public static final String ERROR_PAGE_PATH = "ERROR_PAGE_PATH";

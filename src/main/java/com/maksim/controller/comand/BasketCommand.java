@@ -23,10 +23,7 @@ import java.util.List;
 public class BasketCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String page;
-
         HttpSession se = request.getSession(true);
-        User user = (User) se.getAttribute(PARAM_USER);
         List<Exposition> listOfUserExpositions = new ArrayList<>();
 
         ExpositionDao expositionDao = DaoFactoryImpl.getInstance().getExpositionDao();
@@ -41,7 +38,6 @@ public class BasketCommand implements Command {
                     Exposition exposition = expositionDao.findById(Integer.parseInt(expositionId));
                     listOfUserExpositions.add(exposition);
 
-//                se.setAttribute(PARAM_IS_EXPOSITION, "?//D");
                     se.setAttribute(PARAM_EXPOSITION + i, exposition);
                 }
             }
@@ -56,13 +52,6 @@ public class BasketCommand implements Command {
             }
         }
         return  UserSession.loadUserDataToSession(request);
-//        if (user != null) {
-//
-//            page = UserSession.loadUserDataToSession(request);
-//
-//        } else {
-//            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.LOGIN_PAGE_PATH);
-//        }
-//        return page;
+
     }
 }

@@ -18,9 +18,7 @@ import java.util.List;
 public class UserSession {
     private static final Logger logger = Logger.getLogger(UserSession.class);
 
-
     private static final String PARAM_USER = "user";
-    private static final String PARAM_USERNAME = "name";
     private static final String PARAM_TICKETS = "listOfTickets";
 
 
@@ -28,8 +26,6 @@ public class UserSession {
         logger.info(Logs.LOAD_USER_TO_SESSION);
         String page;
         HttpSession se = request.getSession(true);
-//        se.setAttribute(PARAM_USER, user);
-//        se.setAttribute(PARAM_USERNAME, user.getFullName());
 
         User user = (User) se.getAttribute(PARAM_USER);
         if (user == null) {
@@ -49,20 +45,6 @@ public class UserSession {
 
                 page = ConfigurationManager.getInstance().getPage(ConfigurationManager.MAIN_PAGE_PATH);
             }
-
-//        if (se.getAttribute("listOfUserExpositions") != null) {
-//            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);
-//        } else {
-//            TicketDao ticketDao= DaoFactoryImpl.getInstance().getTicketDao();
-//            List<Ticket> list = ticketDao.findTicketsByUser(user.getUserId());
-//
-//            request.setAttribute(PARAM_TICKETS, list);
-//
-//            //определение пути к main.jsp
-//            page = ConfigurationManager.getInstance().getPage(ConfigurationManager.MAIN_PAGE_PATH);
-//        }
-//        }
-//        return page;
         }
         return page;
     }

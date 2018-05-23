@@ -8,8 +8,7 @@ import java.util.ResourceBundle;
  */
 public class MessageManager {
     private static MessageManager instance;
-//    private ResourceBundle resourceBundle;
-    //класс извлекает информацию из файла messages. properties
+
     private static final String BUNDLE_NAME = "messages";
     public static final String LOGIN_ERROR_MESSAGE = "LOGIN_ERROR_MESSAGE";
     public static final String LOGIN_NOT_UNIQUE_MESSAGE = "LOGIN_NOT_UNIQUE_MESSAGE";
