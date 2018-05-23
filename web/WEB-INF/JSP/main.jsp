@@ -9,6 +9,7 @@
     <title>Welcome</title>
 </head>
 <body>
+${userName}, <fmt:message bundle="${messages}" key="HELLO"/>
 <h2><fmt:message bundle="${messages}" key="LIST_OF_YOUR_TICKETS"/></h2>
 <table class="tg">
     <tr>
@@ -24,14 +25,11 @@
         </tr>
     </c:forEach>
 </table>
+<br>
 <form action="exhibitions" method="get">
     <button type="Submit" name="command" value="allTopics">
         <fmt:message bundle="${messages}" key="VIEW_ALL_TOPICS"/>
     </button>
-</form>
-<br>
-<br>
-<form action="exhibitions">
     <button type="Submit" name="command" value="logout">
         <fmt:message bundle="${messages}" key="LOGOUT"></fmt:message>
     </button>

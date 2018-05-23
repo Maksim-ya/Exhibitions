@@ -11,9 +11,8 @@ import java.io.IOException;
 public interface Command {
     String PARAM_USER = "user";
     String PARAM_EXPOSITION = "exposition";
-    String PARAM_EXPOSITION_ALL_ID = "expositionAllId";
-//    String PARAM_TOTAL_PRICE = "totalPrice";
     String LIST_OF_USER_EXPOSITIONS = "listOfUserExpositions";
+    String PARAM_USER_NAME ="userName" ;
 
 
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;

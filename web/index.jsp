@@ -10,20 +10,17 @@
 </head>
 <body>
 <form action="exhibitions" method="get">
-    <button type="Submit" name="command" value="loginPage">
-        <fmt:message bundle="${messages}" key="ENTER"/>
-    </button>
-    <p align="right">
+    <div align="right">
         <button type="Submit" name="command" value="localRu">
             RU
         </button>
         <button type="Submit" name="command" value="localEn">
             EN
         </button>
-    </p>
-</form>
-<br>
-<form action="exhibitions" method="get">
+    </div>
+    <button type="Submit" name="command" value="loginPage">
+        <fmt:message bundle="${messages}" key="ENTER"/>
+    </button>
     <button type="Submit" name="command" value="allTopics">
         <fmt:message bundle="${messages}" key="VIEW_ALL_TOPICS"/>
     </button>

@@ -33,6 +33,7 @@ public class LoginCommand implements Command {
         if (user != null) {
             HttpSession se = request.getSession();
             se.setAttribute(PARAM_USER, user);
+            se.setAttribute(PARAM_USER_NAME, user.getFullName());
            page= UserSession.loadUserDataToSession( request);
         } else {
             request.setAttribute("errorMessage", MessageManager.getInstance().getMessage(MessageManager.LOGIN_ERROR_MESSAGE));

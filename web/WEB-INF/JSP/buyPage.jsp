@@ -33,7 +33,13 @@
             </td>
             <td>
                 <input type="text" name="numberOfPersons${exposition.expositionId}" size=2 value="1"><br/>
-
+                <c:if test="${requestScope.numberOfPersonsErrorMessage!=null}">
+                    <h6>
+                        <error>
+                            <fmt:message bundle="${messages}" key="NUMBER_OF_PERSONSE_ERROR_MESSAGE"/>
+                        </error>
+                    </h6>
+                </c:if>
             </td>
         </tr>
         </c:forEach>

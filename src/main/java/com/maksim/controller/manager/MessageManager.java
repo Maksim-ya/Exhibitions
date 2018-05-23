@@ -45,6 +45,8 @@ public class MessageManager {
     public static final String DATE = "DATE";
     public static final String SELECT_DATE_AND_NUMBER = "SELECT_DATE_AND_NUMBER";
     public static final String NUMBER_OF_TICKETS = "NUMBER_OF_TICKETS";
+    public static final String HELLO = "HELLO";
+    public static final String NUMBER_OF_PERSONSE_ERROR_MESSAGE = "NUMBER_OF_PERSONSE_ERROR_MESSAGE";
 
 
 
