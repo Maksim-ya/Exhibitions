@@ -11,7 +11,14 @@
 <body>
 <h1><fmt:message bundle="${messages}" key="LIST_OF_ALL_TOPICS"/></h1>
 <form action="exhibitions" method="post">
-
+    <div align="right">
+        <button type="Submit" name="command" value="localRu">
+            RU
+        </button>
+        <button type="Submit" name="command" value="localEn">
+            EN
+        </button>
+    </div>
     <c:forEach items="${listOfTopics}" var="topic">
         <tr>
             <button type="Submit" name="topic" value="${topic}">

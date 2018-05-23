@@ -41,16 +41,23 @@ public class TicketPayCommand implements Command {
             ticket.setUser(user);
             ticket.setExposition(listOfUserExpositions.get(i));
             int expositionId = listOfUserExpositions.get(i).getExpositionId();
-            ticket.setNumberOfPersons(Integer.parseInt(request.getParameter("numberOfPersons" + expositionId)));
-            ticket.setEventDate(LocalDate.parse(request.getParameter("eventDate" + expositionId)));
-            ticketList.add(ticket);
+            int numberOfPersons = Integer.parseInt(request.getParameter("numberOfPersons" + expositionId));
+            if (numberOfPersons > 0) {
+                ticket.setNumberOfPersons(numberOfPersons);
+                ticket.setEventDate(LocalDate.parse(request.getParameter("eventDate" + expositionId)));
+                ticketList.add(ticket);
 //            se.setAttribute(PARAM_EXPOSITION + i, null);
 //            se.setAttribute(PARAM_IS_EXPOSITION, null);
 
-            totalPrice = totalPrice.add(DaoFactoryImpl.getInstance().getExpositionDao()
-                    .findById(listOfUserExpositions.get(i).getExpositionId())
-                    .getPrice().multiply(BigDecimal.valueOf(ticket.getNumberOfPersons())));
+                totalPrice = totalPrice.add(DaoFactoryImpl.getInstance().getExpositionDao()
+                        .findById(listOfUserExpositions.get(i).getExpositionId())
+                        .getPrice().multiply(BigDecimal.valueOf(ticket.getNumberOfPersons())));
+            }
+            else {
+                request.setAttribute("numberOfPersonsErrorMessage", MessageManager.getInstance().getMessage(MessageManager.NUMBER_OF_PERSONS_ERROR_MESSAGE));
+                return ConfigurationManager.getInstance().getPage(ConfigurationManager.BUY_PAGE_PATH);}
         }
+
 
         if (user.getAccount().compareTo(totalPrice) >= 0) {
             try {

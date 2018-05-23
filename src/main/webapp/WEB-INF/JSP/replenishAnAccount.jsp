@@ -9,12 +9,15 @@
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 <body>
-<h4>Enter number of replenishment</h4>
+<h4><fmt:message bundle="${messages}" key="ENTER_NUMBER_OF_REPLENISHMENT"/></h4>
 <form action="exhibitions" method="post">
     <td align="center">
         <input type="text" name="valueOfReplenish" value=""><br/>
     </td>
-    <button type="Submit" name="command" value="replenish">Replenish</button>
+    <br>
+    <button type="Submit" name="command" value="replenish">
+        <fmt:message bundle="${messages}" key="REPLENISH"/>
+    </button>
 
 </form>
 </body>

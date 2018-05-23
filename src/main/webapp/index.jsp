@@ -10,14 +10,7 @@
 </head>
 <body>
 <form action="exhibitions" method="get">
-    <div align="right">
-        <button type="Submit" name="command" value="localRu">
-            RU
-        </button>
-        <button type="Submit" name="command" value="localEn">
-            EN
-        </button>
-    </div>
+
     <button type="Submit" name="command" value="loginPage">
         <fmt:message bundle="${messages}" key="ENTER"/>
     </button>
