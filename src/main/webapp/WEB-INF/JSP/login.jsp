@@ -9,6 +9,16 @@
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link href="/css/color.css" rel="stylesheet" type="text/css">
 </head>
+<form action="exhibitions" method="get">
+    <div align="right">
+        <button type="Submit" name="command" value="localRu">
+            RU
+        </button>
+        <button type="Submit" name="command" value="localEn">
+            EN
+        </button>
+    </div>
+</form>
 <body>
 <c:if test="${requestScope.logoutMessage!=null}">
     <h6>
