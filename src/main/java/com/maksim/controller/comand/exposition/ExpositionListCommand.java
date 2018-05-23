@@ -9,6 +9,7 @@ import com.maksim.model.impl.DaoFactoryImpl;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,9 +22,11 @@ public class ExpositionListCommand implements Command {
         String page;
         ExpositionDao expositionDao = DaoFactoryImpl.getInstance().getExpositionDao();
         String topic = request.getParameter("topic");
-        List<Exposition> list =  expositionDao.findAllByTopic(topic);
+        List<Exposition> listOfExpositions =  expositionDao.findAllByTopic(topic);
 
-        request.setAttribute("listOfExpositions", list);
+//        request.setAttribute("listOfExpositions", listOfExpositions);
+        HttpSession se = request.getSession(true);
+        se.setAttribute("listOfExpositions", listOfExpositions);
 
         page = ConfigurationManager.getInstance().getPage(ConfigurationManager.ALL_EXPOSITIONS_PAGE_PATH);
 

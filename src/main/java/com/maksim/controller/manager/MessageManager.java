@@ -48,6 +48,7 @@ public class MessageManager {
     public static final String HELLO = "HELLO";
     public static final String ENTER_NUMBER_OF_REPLENISHMENT = "ENTER_NUMBER_OF_REPLENISHMENT";
     public static final String NUMBER_OF_PERSONS_ERROR_MESSAGE = "NUMBER_OF_PERSONS_ERROR_MESSAGE";
+    public static final String NO_CHOSEN = "NO_CHOSEN";
 
 
 
