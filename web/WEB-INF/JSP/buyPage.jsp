@@ -36,7 +36,7 @@
                 <c:if test="${requestScope.numberOfPersonsErrorMessage!=null}">
                     <h6>
                         <error>
-                            <fmt:message bundle="${messages}" key="NUMBER_OF_PERSONSE_ERROR_MESSAGE"/>
+                            <fmt:message bundle="${messages}" key="NUMBER_OF_PERSONES_ERROR_MESSAGE"/>
                         </error>
                     </h6>
                 </c:if>
