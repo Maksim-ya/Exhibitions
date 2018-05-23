@@ -3,12 +3,9 @@ package com.maksim.controller.comand.user;
 import com.maksim.controller.comand.Command;
 import com.maksim.controller.manager.ConfigurationManager;
 import com.maksim.controller.manager.MessageManager;
-import com.maksim.domain.User;
-import com.maksim.model.dao.UserDao;
-import com.maksim.model.impl.DaoFactoryImpl;
-import com.maksim.model.impl.UserDaoImpl;
-import com.maksim.service.UserService;
-import com.maksim.validator.UserValidator;
+import com.maksim.model.domain.User;
+import com.maksim.model.service.UserService;
+import com.maksim.model.validator.UserValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

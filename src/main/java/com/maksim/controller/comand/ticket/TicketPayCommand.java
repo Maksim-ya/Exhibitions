@@ -4,11 +4,11 @@ import com.maksim.controller.comand.Command;
 import com.maksim.controller.manager.ConfigurationManager;
 import com.maksim.controller.manager.MessageManager;
 import com.maksim.controller.manager.UserSession;
-import com.maksim.domain.Exposition;
-import com.maksim.domain.Ticket;
-import com.maksim.domain.User;
+import com.maksim.model.domain.Exposition;
+import com.maksim.model.domain.Ticket;
+import com.maksim.model.domain.User;
 import com.maksim.model.impl.DaoFactoryImpl;
-import com.maksim.service.TicketService;
+import com.maksim.model.service.TicketService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

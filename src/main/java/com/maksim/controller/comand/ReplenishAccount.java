@@ -2,7 +2,7 @@ package com.maksim.controller.comand;
 
 import com.maksim.controller.manager.ConfigurationManager;
 import com.maksim.controller.manager.MessageManager;
-import com.maksim.domain.User;
+import com.maksim.model.domain.User;
 import com.maksim.model.dao.UserDao;
 import com.maksim.model.impl.DaoFactoryImpl;
 

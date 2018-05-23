@@ -1,6 +1,6 @@
 package com.maksim.model.impl;
 
-import com.maksim.domain.User;
+import com.maksim.model.domain.User;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.UserDao;
 import org.apache.log4j.Logger;

@@ -2,7 +2,7 @@ package com.maksim.controller.comand.exposition;
 
 import com.maksim.controller.comand.Command;
 import com.maksim.controller.manager.ConfigurationManager;
-import com.maksim.domain.Exposition;
+import com.maksim.model.domain.Exposition;
 import com.maksim.model.dao.ExpositionDao;
 import com.maksim.model.impl.DaoFactoryImpl;
 

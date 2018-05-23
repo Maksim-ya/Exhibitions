@@ -1,9 +1,8 @@
 package com.maksim.model.dao;
 
-import com.maksim.domain.Exposition;
-import com.maksim.domain.Payment;
-import com.maksim.domain.Ticket;
-import com.maksim.domain.User;
+import com.maksim.model.domain.Payment;
+import com.maksim.model.domain.Ticket;
+import com.maksim.model.domain.User;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;

@@ -1,4 +1,4 @@
-package com.maksim.service;
+package com.maksim.model.service;
 
 import org.junit.Assert;
 import org.junit.Test;

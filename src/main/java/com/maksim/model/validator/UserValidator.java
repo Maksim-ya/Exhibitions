@@ -1,6 +1,6 @@
-package com.maksim.validator;
+package com.maksim.model.validator;
 
-import com.maksim.domain.User;
+import com.maksim.model.domain.User;
 import com.maksim.model.impl.DaoFactoryImpl;
 
 public class UserValidator {

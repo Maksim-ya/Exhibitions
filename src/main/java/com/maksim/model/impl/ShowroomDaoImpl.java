@@ -1,6 +1,6 @@
 package com.maksim.model.impl;
 
-import com.maksim.domain.Showroom;
+import com.maksim.model.domain.Showroom;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.ShowroomDao;
 import org.apache.log4j.Logger;

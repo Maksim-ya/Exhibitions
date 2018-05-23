@@ -1,21 +1,17 @@
 package com.maksim.controller.comand;
 
-import com.maksim.controller.manager.ConfigurationManager;
 import com.maksim.controller.manager.UserSession;
-import com.maksim.domain.Exposition;
-import com.maksim.domain.User;
+import com.maksim.model.domain.Exposition;
+import com.maksim.model.domain.User;
 import com.maksim.model.dao.ExpositionDao;
 import com.maksim.model.impl.DaoFactoryImpl;
-import com.maksim.model.impl.ExpositionDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 

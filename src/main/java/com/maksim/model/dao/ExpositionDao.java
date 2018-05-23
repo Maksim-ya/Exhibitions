@@ -1,6 +1,6 @@
 package com.maksim.model.dao;
 
-import com.maksim.domain.Exposition;
+import com.maksim.model.domain.Exposition;
 
 import java.util.List;
 

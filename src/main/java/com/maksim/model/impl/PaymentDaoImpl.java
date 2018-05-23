@@ -1,8 +1,8 @@
 package com.maksim.model.impl;
 
-import com.maksim.domain.Payment;
-import com.maksim.domain.Ticket;
-import com.maksim.domain.User;
+import com.maksim.model.domain.Payment;
+import com.maksim.model.domain.Ticket;
+import com.maksim.model.domain.User;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.dao.PaymentDao;
 import org.apache.log4j.Logger;

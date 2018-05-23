@@ -1,7 +1,7 @@
-package com.maksim.service;
+package com.maksim.model.service;
 
 import com.maksim.controller.manager.Logs;
-import com.maksim.domain.User;
+import com.maksim.model.domain.User;
 import com.maksim.model.dao.UserDao;
 import com.maksim.model.impl.DaoFactoryImpl;
 import org.apache.commons.codec.digest.DigestUtils;

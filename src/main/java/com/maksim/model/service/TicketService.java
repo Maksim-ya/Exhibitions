@@ -1,11 +1,7 @@
-package com.maksim.service;
+package com.maksim.model.service;
 
-import com.maksim.controller.manager.ConfigurationManager;
-import com.maksim.controller.manager.MessageManager;
-import com.maksim.controller.manager.UserSession;
-import com.maksim.domain.Exposition;
-import com.maksim.domain.Ticket;
-import com.maksim.domain.User;
+import com.maksim.model.domain.Ticket;
+import com.maksim.model.domain.User;
 import com.maksim.model.connection.DBConnection;
 import com.maksim.model.impl.DaoFactoryImpl;
 import org.apache.log4j.Logger;
@@ -13,7 +9,6 @@ import org.apache.log4j.Logger;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**

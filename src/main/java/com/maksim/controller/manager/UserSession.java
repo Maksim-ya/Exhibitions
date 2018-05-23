@@ -1,8 +1,8 @@
 package com.maksim.controller.manager;
 
-import com.maksim.domain.Exposition;
-import com.maksim.domain.Ticket;
-import com.maksim.domain.User;
+import com.maksim.model.domain.Exposition;
+import com.maksim.model.domain.Ticket;
+import com.maksim.model.domain.User;
 import com.maksim.model.dao.TicketDao;
 import com.maksim.model.impl.DaoFactoryImpl;
 import org.apache.log4j.Logger;

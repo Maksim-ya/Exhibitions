@@ -1,8 +1,7 @@
 package com.maksim.model.dao;
 
-import com.maksim.domain.Ticket;
+import com.maksim.model.domain.Ticket;
 
-import java.sql.Connection;
 import java.util.List;
 
 /**
