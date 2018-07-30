@@ -33,7 +33,7 @@
                        min="${today}">
             </td>
             <td>
-                <input type="text" name="numberOfPersons${exposition.expositionId}" size=2 value="1"><br/>
+                <input type="number" name="numberOfPersons${exposition.expositionId}" size=2 value="1"><br/>
             </td>
         </tr>
         </c:forEach>

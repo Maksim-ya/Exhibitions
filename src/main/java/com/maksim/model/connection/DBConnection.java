@@ -11,18 +11,21 @@ import java.sql.*;
 public class DBConnection {
     private static final Logger logger = Logger.getLogger(DBConnection.class);
 
-    private static Connection connection;
+    private static volatile Connection connection;
 
     public static Connection getConnection() {
-
-        try {
-            InitialContext initContext = new InitialContext();
-            DataSource ds = (DataSource) initContext.lookup("java:comp/env/jdbc/myexhibitions");
-            connection = ds.getConnection();
-        } catch (NamingException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        synchronized (DBConnection.class) {
+            if (connection==null) {
+                try {
+                    InitialContext initContext = new InitialContext();
+                    DataSource ds = (DataSource) initContext.lookup("java:comp/env/jdbc/myexhibitions");
+                    connection = ds.getConnection();
+                } catch (NamingException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return connection;
     }
